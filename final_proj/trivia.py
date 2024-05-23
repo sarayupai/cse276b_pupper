@@ -23,7 +23,7 @@ class Trivia(Node):
 
     def __init__(self):
         # initalize
-        # super().__init__('trivia')
+        super().__init__('trivia')
         # create database - ie pull from json + populate dict 
         self.database = ?? 
 

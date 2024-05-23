@@ -9,8 +9,10 @@
 
 #### Import ####
 from .movement import SampleControllerAsync
+
+# Packages to let us create nodes and spin them up 
 import rclpy
-import time
+#import time
 from rclpy.node import Node
 
 def main():

@@ -59,12 +59,16 @@ class MinimalClientAsync(Node):
     # Arguments:  self (reference the current class), move_command (the command we plan to send to the server)
     #####
     def send_move_request(self, move_command):
-        self.req = GoPupper.Request()
+        self.req = GoPupper.Request() # ??
         self.req.command = move_command
         print("In send_move_request, command is: %s" % self.req.command)
         self.future = self.cli.call_async(self.req)  # send the command to the server
         rclpy.spin_until_future_complete(self, self.future)
         return self.future.result()
+        
+     #TODO : send audio request 
+     def send_audio_request(self, filename):
+         self.
 
 ###
 # Name: Main
