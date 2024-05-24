@@ -44,10 +44,10 @@ GPIO.setup(touchPin_Back,  GPIO.IN)
 
 class SampleControllerAsync(Node):
 
-    def __init__(self):
+    def __init__(self, client):
         # initalize
         super().__init__('movement')
-        self.client = MinimalClientAsync()
+        self.client = client
 
     def sensor_movement(self):
         while True:

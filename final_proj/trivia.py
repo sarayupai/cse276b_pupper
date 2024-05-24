@@ -18,15 +18,14 @@ from rclpy.node import Node
 # Purpose: 
 #
 ######
-
 class Trivia(Node):
 
     def __init__(self):
         # initalize
         super().__init__('trivia')
         # create database - ie pull from json + populate dict 
-        self.database = ?? 
-
+        self.database = ['q+a', 0]
+'''
  
     ###
     # Name: get_question 
@@ -48,4 +47,4 @@ class Trivia(Node):
     	correct = False 
     
     	return correct 
-        
+'''

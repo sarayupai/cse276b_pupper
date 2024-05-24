@@ -8,7 +8,10 @@
 #############
 
 #### Import ####
-from .movement import SampleControllerAsync
+from movement import SampleControllerAsync
+from audio import Audio 
+from trivia import Trivia 
+from client_go_pupper import MinimalClientAsync
 
 # Packages to let us create nodes and spin them up 
 import rclpy
@@ -17,43 +20,49 @@ from rclpy.node import Node
 
 def main():
     rclpy.init()
-    sample_controller = SampleControllerAsync()
+    client = MinimalClientAsync()
+    
+    
+    audio = Audio(client)
+    #sample_controller = SampleControllerAsync(client)
+    trivia = Trivia()
+    
+    audio.speak('Game start') 
+    audio.speak(trivia.database[0])
 
     # send commands to do the conga dance
-    sample_controller.sensor_movement()
+    #sample_controller.sensor_movement()
+    
+    
+    
+    
+    # If detect color -> enter trivia
+    	# question_key = trivia.get_question(color)
+    	# get user input 
+    	# guess = ??
+    	# correct = trivia.check_answer(question_key, guess)
+    	# if correct: 
+    	    # call move function to move 
+    	# else: 
 
     # This spins up a client node, checks if it's done, throws an exception of there's an issue
     while rclpy.ok():
-        rclpy.spin_once(sample_controller)
-        if sample_controller.future.done():
+        rclpy.spin_once(client)
+        if client.future.done():
             try:
-                response = sample_controller.future.result()
+                response = client.future.result()
             except Exception as e:
-                sample_controller.get_logger().info(
+                client.get_logger().info(
                     'Service call failed %r' % (e,))
             else:
-                sample_controller.get_logger().info(
+                client.get_logger().info(
                    'Result of command: %s ' %
                    (response))
             break
 
     # Destroy node and shut down
-    sample_controller.destroy_node()
-    rclpy.shutdown()
-    
-    
-    trivia = Trivia()
-    
-    # If detect color -> enter trivia
-    	question_key = trivia.get_question(color)
-    	# get user input 
-    	guess = ??
-    	correct = trivia.check_answer(question_key, guess)
-    	if correct: 
-    	    # call move function to move 
-    	else: 
-    	    
-    	
+    client.destroy_node()
+    rclpy.shutdown()	
 
 
 if __name__ == '__main__':

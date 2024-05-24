@@ -19,6 +19,8 @@
 
 # Import the ROS2 interface we wrote, called GoPupper. This specifies the message type.
 from pupper_interfaces.srv import GoPupper
+# , PlayAudio, StopAudio
+from mini_pupper_interfaces.srv import PlayMusic, StopMusic
 
 # Lets us read arguments from the command line as needed
 import sys
@@ -43,15 +45,21 @@ class MinimalClientAsync(Node):
         super().__init__('minimal_client_async')
         #super().__init__('client_go_pupper')
         self.cli = self.create_client(GoPupper, 'pup_command')
+        self.play_aud_cli = self.create_client(PlayMusic, '/play_music'); 
+        self.stop_aud_cli = self.create_client(StopMusic, '/stop_music');
 
 
         # "The while loop in the constructor checks if a service matching the type and name of the client 
         # is available once a second." 
         while not self.cli.wait_for_service(timeout_sec=1.0):
             self.get_logger().info('service not available, waiting again...')
+        while not self.play_aud_cli.wait_for_service(timeout_sec=1.0):
+            self.get_logger().info('service play not available, waiting again...')
+        while not self.stop_aud_cli.wait_for_service(timeout_sec=1.0):
+            self.get_logger().info('service stop not available, waiting again...')
 
         # "Finally it creates a new request object.""
-        self.req = GoPupper.Request()
+       # self.req = GoPupper.Request()
 
     ###
     # Name: send_move_request
@@ -59,16 +67,29 @@ class MinimalClientAsync(Node):
     # Arguments:  self (reference the current class), move_command (the command we plan to send to the server)
     #####
     def send_move_request(self, move_command):
-        self.req = GoPupper.Request() # ??
+        self.req = GoPupper.Request()
         self.req.command = move_command
         print("In send_move_request, command is: %s" % self.req.command)
         self.future = self.cli.call_async(self.req)  # send the command to the server
         rclpy.spin_until_future_complete(self, self.future)
         return self.future.result()
         
-     #TODO : send audio request 
-     def send_audio_request(self, filename):
-         self.
+     # send audio request to play
+    def send_audio_request(self, filename):
+        self.req = PlayMusic.Request()
+        self.req.file_name = filename
+        print("sending filename via client go pupper")
+        self.future = self.play_aud_cli.call_async(self.req) 
+        rclpy.spin_until_future_complete(self, self.future)
+        return self.future.result()
+         
+    # send request to stop 
+    def stop_audio_request(self):
+        self.req = StopMusic.Request()
+        print("stop the audio request")
+        self.future = self.stop_aud_cli.call_async(self.req) 
+        rclpy.spin_until_future_complete(self, self.future)
+        return self.future.result()
 
 ###
 # Name: Main
@@ -84,9 +105,9 @@ def main(args=None):
     
     # debug - comment in/our as needed
     #print("In client, got this command: %s" % cmd)
-
     # Call send move request (which sends cmd to server)
     minimal_client.send_move_request(cmd)
+    # minimal_client.send_audio_request(cmd)
 
     # This spins up a client node, checks if it's done, throws an exception of there's an issue
     # (Probably a bit redundant with other code and can be simplified. But right now it works, so ¯\_(ツ)_/¯)
