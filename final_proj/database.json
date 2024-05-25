@@ -1,0 +1,38 @@
+{
+    "red": {
+        "Q1": {
+            "question": "What is 2 + 2?",
+            "choices": ["1", "2", "3", "4"],
+            "correct_answer": "4"
+        },
+        "Q2": {
+            "question": "What is 3 * 3?",
+            "choices": ["6", "7", "8", "9"],
+            "correct_answer": "9"
+        }
+    },
+    "green": {
+        "Q1": {
+            "question": "What is the chemical symbol for water?",
+            "choices": ["H2O", "O2", "CO2", "HO"],
+            "correct_answer": "H2O"
+        },
+        "Q2": {
+            "question": "What planet is known as the Red Planet?",
+            "choices": ["Earth", "Mars", "Jupiter", "Saturn"],
+            "correct_answer": "Mars"
+        }
+    },
+    "blue": {
+        "Q1": {
+            "question": "What is the chemical symbol for water?",
+            "choices": ["H2O", "O2", "CO2", "HO"],
+            "correct_answer": "H2O"
+        },
+        "Q2": {
+            "question": "What planet is known as the Red Planet?",
+            "choices": ["Earth", "Mars", "Jupiter", "Saturn"],
+            "correct_answer": "Mars"
+        }
+    }
+}
