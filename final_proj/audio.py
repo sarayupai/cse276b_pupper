@@ -12,7 +12,9 @@
 from gtts import gTTS 
 from client_go_pupper import MinimalClientAsync
 # Packages to let us create nodes and spin them up 
-import rclpy # ??
+import rclpy
+import os
+import time
 from rclpy.node import Node
 
 class Audio(Node):
@@ -29,20 +31,26 @@ class Audio(Node):
         filename = 'speech.mp3'
         tts.save(filename)
         # Play the speech 
-        self.client.send_audio_request('/home/ubuntu/ros2_ws/src/final_proj/final_proj/' + filename) 
-        # delete file?    
-  
-  
+        self.client.send_audio_request('/home/ubuntu/ros2_ws/src/final_proj/final_proj/' + filename)
+     
+    def stop_speak(self):
+    	self.client.stop_audio_request()
+    	# delete the file now
+    	if os.path.exists('/home/ubuntu/ros2_ws/src/final_proj/final_proj/speech.mp3'):
+            os.remove('speech.mp3')
+
 # To test audio functionality     
 def main():
     rclpy.init()
     client = MinimalClientAsync()
     audio = Audio(client)
     
-
     # send commands to do the conga dance
     audio.speak("we are testing this")
-
+    # TODO: just hardcode the timer for now 
+    time.sleep(7.0)
+    audio.stop_speak()
+    
     # This spins up a client node, checks if it's done, throws an exception of there's an issue
     # (Probably a bit redundant with other code and can be simplified. But right now it works, so ¯\_(ツ)_/¯)
     while rclpy.ok():

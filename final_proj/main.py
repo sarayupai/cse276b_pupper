@@ -12,10 +12,11 @@ from movement import SampleControllerAsync
 from audio import Audio 
 from trivia import Trivia 
 from client_go_pupper import MinimalClientAsync
+import os
 
 # Packages to let us create nodes and spin them up 
 import rclpy
-#import time
+import time
 from rclpy.node import Node
 
 def main():
@@ -27,14 +28,16 @@ def main():
     #sample_controller = SampleControllerAsync(client)
     trivia = Trivia()
     
-    audio.speak('Game start') 
+    audio.speak('Game start')
+    time.sleep(5.0)
+    audio.stop_speak()
+    
     audio.speak(trivia.database[0])
+    time.sleep(5.0)
+    audio.stop_speak()
 
     # send commands to do the conga dance
     #sample_controller.sensor_movement()
-    
-    
-    
     
     # If detect color -> enter trivia
     	# question_key = trivia.get_question(color)
