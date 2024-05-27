@@ -1,0 +1,54 @@
+[4.843s] Invoking command in '/home/ubuntu/ros2_ws/src/final_proj': PYTHONPATH=/home/ubuntu/ros2_ws/src/final_proj/build/final_proj/prefix_override:/home/ubuntu/ros2_ws/src/final_proj/install/final_proj/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated setup.py egg_info --egg-base build/final_proj build --build-base /home/ubuntu/ros2_ws/src/final_proj/build/final_proj/build install --record /home/ubuntu/ros2_ws/src/final_proj/build/final_proj/install.log --single-version-externally-managed install_data
+[6.695s] running egg_info
+[6.697s] creating build/final_proj/final_proj.egg-info
+[6.698s] writing build/final_proj/final_proj.egg-info/PKG-INFO
+[6.700s] writing dependency_links to build/final_proj/final_proj.egg-info/dependency_links.txt
+[6.701s] writing entry points to build/final_proj/final_proj.egg-info/entry_points.txt
+[6.703s] writing requirements to build/final_proj/final_proj.egg-info/requires.txt
+[6.704s] writing top-level names to build/final_proj/final_proj.egg-info/top_level.txt
+[6.705s] writing manifest file 'build/final_proj/final_proj.egg-info/SOURCES.txt'
+[6.718s] reading manifest file 'build/final_proj/final_proj.egg-info/SOURCES.txt'
+[6.724s] writing manifest file 'build/final_proj/final_proj.egg-info/SOURCES.txt'
+[6.724s] running build
+[6.725s] running build_py
+[6.726s] creating /home/ubuntu/ros2_ws/src/final_proj/build/final_proj/build
+[6.727s] creating /home/ubuntu/ros2_ws/src/final_proj/build/final_proj/build/lib
+[6.727s] creating /home/ubuntu/ros2_ws/src/final_proj/build/final_proj/build/lib/final_proj
+[6.728s] copying final_proj/__init__.py -> /home/ubuntu/ros2_ws/src/final_proj/build/final_proj/build/lib/final_proj
+[6.731s] copying final_proj/main.py -> /home/ubuntu/ros2_ws/src/final_proj/build/final_proj/build/lib/final_proj
+[6.735s] copying final_proj/audio.py -> /home/ubuntu/ros2_ws/src/final_proj/build/final_proj/build/lib/final_proj
+[6.736s] copying final_proj/client_go_pupper.py -> /home/ubuntu/ros2_ws/src/final_proj/build/final_proj/build/lib/final_proj
+[6.737s] copying final_proj/trivia.py -> /home/ubuntu/ros2_ws/src/final_proj/build/final_proj/build/lib/final_proj
+[6.737s] copying final_proj/service_go_pupper.py -> /home/ubuntu/ros2_ws/src/final_proj/build/final_proj/build/lib/final_proj
+[6.757s] copying final_proj/movement.py -> /home/ubuntu/ros2_ws/src/final_proj/build/final_proj/build/lib/final_proj
+[6.757s] running install
+[6.758s] running install_lib
+[6.759s] creating /home/ubuntu/ros2_ws/src/final_proj/install/final_proj/lib/python3.10/site-packages/final_proj
+[6.760s] copying /home/ubuntu/ros2_ws/src/final_proj/build/final_proj/build/lib/final_proj/__init__.py -> /home/ubuntu/ros2_ws/src/final_proj/install/final_proj/lib/python3.10/site-packages/final_proj
+[6.760s] copying /home/ubuntu/ros2_ws/src/final_proj/build/final_proj/build/lib/final_proj/main.py -> /home/ubuntu/ros2_ws/src/final_proj/install/final_proj/lib/python3.10/site-packages/final_proj
+[6.767s] copying /home/ubuntu/ros2_ws/src/final_proj/build/final_proj/build/lib/final_proj/audio.py -> /home/ubuntu/ros2_ws/src/final_proj/install/final_proj/lib/python3.10/site-packages/final_proj
+[6.770s] copying /home/ubuntu/ros2_ws/src/final_proj/build/final_proj/build/lib/final_proj/client_go_pupper.py -> /home/ubuntu/ros2_ws/src/final_proj/install/final_proj/lib/python3.10/site-packages/final_proj
+[6.771s] copying /home/ubuntu/ros2_ws/src/final_proj/build/final_proj/build/lib/final_proj/trivia.py -> /home/ubuntu/ros2_ws/src/final_proj/install/final_proj/lib/python3.10/site-packages/final_proj
+[6.772s] copying /home/ubuntu/ros2_ws/src/final_proj/build/final_proj/build/lib/final_proj/service_go_pupper.py -> /home/ubuntu/ros2_ws/src/final_proj/install/final_proj/lib/python3.10/site-packages/final_proj
+[6.773s] copying /home/ubuntu/ros2_ws/src/final_proj/build/final_proj/build/lib/final_proj/movement.py -> /home/ubuntu/ros2_ws/src/final_proj/install/final_proj/lib/python3.10/site-packages/final_proj
+[6.773s] byte-compiling /home/ubuntu/ros2_ws/src/final_proj/install/final_proj/lib/python3.10/site-packages/final_proj/__init__.py to __init__.cpython-310.pyc
+[6.774s] byte-compiling /home/ubuntu/ros2_ws/src/final_proj/install/final_proj/lib/python3.10/site-packages/final_proj/main.py to main.cpython-310.pyc
+[6.776s] byte-compiling /home/ubuntu/ros2_ws/src/final_proj/install/final_proj/lib/python3.10/site-packages/final_proj/audio.py to audio.cpython-310.pyc
+[6.777s] byte-compiling /home/ubuntu/ros2_ws/src/final_proj/install/final_proj/lib/python3.10/site-packages/final_proj/client_go_pupper.py to client_go_pupper.cpython-310.pyc
+[6.778s] byte-compiling /home/ubuntu/ros2_ws/src/final_proj/install/final_proj/lib/python3.10/site-packages/final_proj/trivia.py to trivia.cpython-310.pyc
+[6.779s] byte-compiling /home/ubuntu/ros2_ws/src/final_proj/install/final_proj/lib/python3.10/site-packages/final_proj/service_go_pupper.py to service_go_pupper.cpython-310.pyc
+[6.780s] byte-compiling /home/ubuntu/ros2_ws/src/final_proj/install/final_proj/lib/python3.10/site-packages/final_proj/movement.py to movement.cpython-310.pyc
+[6.781s] running install_data
+[6.781s] creating /home/ubuntu/ros2_ws/src/final_proj/install/final_proj/share/ament_index
+[6.782s] creating /home/ubuntu/ros2_ws/src/final_proj/install/final_proj/share/ament_index/resource_index
+[6.783s] creating /home/ubuntu/ros2_ws/src/final_proj/install/final_proj/share/ament_index/resource_index/packages
+[6.784s] copying resource/final_proj -> /home/ubuntu/ros2_ws/src/final_proj/install/final_proj/share/ament_index/resource_index/packages
+[6.785s] copying package.xml -> /home/ubuntu/ros2_ws/src/final_proj/install/final_proj/share/final_proj
+[6.786s] running install_egg_info
+[6.788s] Copying build/final_proj/final_proj.egg-info to /home/ubuntu/ros2_ws/src/final_proj/install/final_proj/lib/python3.10/site-packages/final_proj-0.0.0-py3.10.egg-info
+[6.794s] running install_scripts
+[6.903s] Installing client script to /home/ubuntu/ros2_ws/src/final_proj/install/final_proj/lib/final_proj
+[6.904s] Installing maze script to /home/ubuntu/ros2_ws/src/final_proj/install/final_proj/lib/final_proj
+[6.905s] Installing service script to /home/ubuntu/ros2_ws/src/final_proj/install/final_proj/lib/final_proj
+[6.907s] writing list of installed files to '/home/ubuntu/ros2_ws/src/final_proj/build/final_proj/install.log'
+[7.076s] Invoked command in '/home/ubuntu/ros2_ws/src/final_proj' returned '0': PYTHONPATH=/home/ubuntu/ros2_ws/src/final_proj/build/final_proj/prefix_override:/home/ubuntu/ros2_ws/src/final_proj/install/final_proj/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated setup.py egg_info --egg-base build/final_proj build --build-base /home/ubuntu/ros2_ws/src/final_proj/build/final_proj/build install --record /home/ubuntu/ros2_ws/src/final_proj/build/final_proj/install.log --single-version-externally-managed install_data

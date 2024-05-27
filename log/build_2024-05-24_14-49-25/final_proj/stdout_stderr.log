@@ -1,0 +1,52 @@
+running egg_info
+creating build/final_proj/final_proj.egg-info
+writing build/final_proj/final_proj.egg-info/PKG-INFO
+writing dependency_links to build/final_proj/final_proj.egg-info/dependency_links.txt
+writing entry points to build/final_proj/final_proj.egg-info/entry_points.txt
+writing requirements to build/final_proj/final_proj.egg-info/requires.txt
+writing top-level names to build/final_proj/final_proj.egg-info/top_level.txt
+writing manifest file 'build/final_proj/final_proj.egg-info/SOURCES.txt'
+reading manifest file 'build/final_proj/final_proj.egg-info/SOURCES.txt'
+writing manifest file 'build/final_proj/final_proj.egg-info/SOURCES.txt'
+running build
+running build_py
+creating /home/ubuntu/ros2_ws/src/final_proj/build/final_proj/build
+creating /home/ubuntu/ros2_ws/src/final_proj/build/final_proj/build/lib
+creating /home/ubuntu/ros2_ws/src/final_proj/build/final_proj/build/lib/final_proj
+copying final_proj/__init__.py -> /home/ubuntu/ros2_ws/src/final_proj/build/final_proj/build/lib/final_proj
+copying final_proj/main.py -> /home/ubuntu/ros2_ws/src/final_proj/build/final_proj/build/lib/final_proj
+copying final_proj/audio.py -> /home/ubuntu/ros2_ws/src/final_proj/build/final_proj/build/lib/final_proj
+copying final_proj/client_go_pupper.py -> /home/ubuntu/ros2_ws/src/final_proj/build/final_proj/build/lib/final_proj
+copying final_proj/trivia.py -> /home/ubuntu/ros2_ws/src/final_proj/build/final_proj/build/lib/final_proj
+copying final_proj/service_go_pupper.py -> /home/ubuntu/ros2_ws/src/final_proj/build/final_proj/build/lib/final_proj
+copying final_proj/movement.py -> /home/ubuntu/ros2_ws/src/final_proj/build/final_proj/build/lib/final_proj
+running install
+running install_lib
+creating /home/ubuntu/ros2_ws/src/final_proj/install/final_proj/lib/python3.10/site-packages/final_proj
+copying /home/ubuntu/ros2_ws/src/final_proj/build/final_proj/build/lib/final_proj/__init__.py -> /home/ubuntu/ros2_ws/src/final_proj/install/final_proj/lib/python3.10/site-packages/final_proj
+copying /home/ubuntu/ros2_ws/src/final_proj/build/final_proj/build/lib/final_proj/main.py -> /home/ubuntu/ros2_ws/src/final_proj/install/final_proj/lib/python3.10/site-packages/final_proj
+copying /home/ubuntu/ros2_ws/src/final_proj/build/final_proj/build/lib/final_proj/audio.py -> /home/ubuntu/ros2_ws/src/final_proj/install/final_proj/lib/python3.10/site-packages/final_proj
+copying /home/ubuntu/ros2_ws/src/final_proj/build/final_proj/build/lib/final_proj/client_go_pupper.py -> /home/ubuntu/ros2_ws/src/final_proj/install/final_proj/lib/python3.10/site-packages/final_proj
+copying /home/ubuntu/ros2_ws/src/final_proj/build/final_proj/build/lib/final_proj/trivia.py -> /home/ubuntu/ros2_ws/src/final_proj/install/final_proj/lib/python3.10/site-packages/final_proj
+copying /home/ubuntu/ros2_ws/src/final_proj/build/final_proj/build/lib/final_proj/service_go_pupper.py -> /home/ubuntu/ros2_ws/src/final_proj/install/final_proj/lib/python3.10/site-packages/final_proj
+copying /home/ubuntu/ros2_ws/src/final_proj/build/final_proj/build/lib/final_proj/movement.py -> /home/ubuntu/ros2_ws/src/final_proj/install/final_proj/lib/python3.10/site-packages/final_proj
+byte-compiling /home/ubuntu/ros2_ws/src/final_proj/install/final_proj/lib/python3.10/site-packages/final_proj/__init__.py to __init__.cpython-310.pyc
+byte-compiling /home/ubuntu/ros2_ws/src/final_proj/install/final_proj/lib/python3.10/site-packages/final_proj/main.py to main.cpython-310.pyc
+byte-compiling /home/ubuntu/ros2_ws/src/final_proj/install/final_proj/lib/python3.10/site-packages/final_proj/audio.py to audio.cpython-310.pyc
+byte-compiling /home/ubuntu/ros2_ws/src/final_proj/install/final_proj/lib/python3.10/site-packages/final_proj/client_go_pupper.py to client_go_pupper.cpython-310.pyc
+byte-compiling /home/ubuntu/ros2_ws/src/final_proj/install/final_proj/lib/python3.10/site-packages/final_proj/trivia.py to trivia.cpython-310.pyc
+byte-compiling /home/ubuntu/ros2_ws/src/final_proj/install/final_proj/lib/python3.10/site-packages/final_proj/service_go_pupper.py to service_go_pupper.cpython-310.pyc
+byte-compiling /home/ubuntu/ros2_ws/src/final_proj/install/final_proj/lib/python3.10/site-packages/final_proj/movement.py to movement.cpython-310.pyc
+running install_data
+creating /home/ubuntu/ros2_ws/src/final_proj/install/final_proj/share/ament_index
+creating /home/ubuntu/ros2_ws/src/final_proj/install/final_proj/share/ament_index/resource_index
+creating /home/ubuntu/ros2_ws/src/final_proj/install/final_proj/share/ament_index/resource_index/packages
+copying resource/final_proj -> /home/ubuntu/ros2_ws/src/final_proj/install/final_proj/share/ament_index/resource_index/packages
+copying package.xml -> /home/ubuntu/ros2_ws/src/final_proj/install/final_proj/share/final_proj
+running install_egg_info
+Copying build/final_proj/final_proj.egg-info to /home/ubuntu/ros2_ws/src/final_proj/install/final_proj/lib/python3.10/site-packages/final_proj-0.0.0-py3.10.egg-info
+running install_scripts
+Installing client script to /home/ubuntu/ros2_ws/src/final_proj/install/final_proj/lib/final_proj
+Installing maze script to /home/ubuntu/ros2_ws/src/final_proj/install/final_proj/lib/final_proj
+Installing service script to /home/ubuntu/ros2_ws/src/final_proj/install/final_proj/lib/final_proj
+writing list of installed files to '/home/ubuntu/ros2_ws/src/final_proj/build/final_proj/install.log'

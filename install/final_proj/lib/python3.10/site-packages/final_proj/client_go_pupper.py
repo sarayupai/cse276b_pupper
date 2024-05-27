@@ -53,13 +53,13 @@ class MinimalClientAsync(Node):
         # is available once a second." 
         while not self.cli.wait_for_service(timeout_sec=1.0):
             self.get_logger().info('service not available, waiting again...')
-        # while not self.play_aud_cli.wait_for_service(timeout_sec=1.0):
-            # self.get_logger().info('service play not available, waiting again...')
-        # while not self.stop_aud_cli.wait_for_service(timeout_sec=1.0):
-            # self.get_logger().info('service stop not available, waiting again...')
+        while not self.play_aud_cli.wait_for_service(timeout_sec=1.0):
+            self.get_logger().info('service play not available, waiting again...')
+        while not self.stop_aud_cli.wait_for_service(timeout_sec=1.0):
+            self.get_logger().info('service stop not available, waiting again...')
 
         # "Finally it creates a new request object.""
-        # self.req = GoPupper.Request()
+       # self.req = GoPupper.Request()
 
     ###
     # Name: send_move_request

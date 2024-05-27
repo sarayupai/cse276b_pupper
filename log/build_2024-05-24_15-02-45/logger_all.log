@@ -1,0 +1,90 @@
+[2.625s] DEBUG:colcon:Command line arguments: ['/usr/bin/colcon', 'build', '--packages-select', 'final_proj']
+[2.628s] DEBUG:colcon:Parsed command line arguments: Namespace(log_base=None, log_level=None, verb_name='build', build_base='build', install_base='install', merge_install=False, symlink_install=False, test_result_base=None, continue_on_error=False, executor='parallel', parallel_workers=4, event_handlers=None, ignore_user_meta=False, metas=['./colcon.meta'], base_paths=['.'], packages_ignore=None, packages_ignore_regex=None, paths=None, packages_up_to=None, packages_up_to_regex=None, packages_above=None, packages_above_and_dependencies=None, packages_above_depth=None, packages_select_by_dep=None, packages_skip_by_dep=None, packages_skip_up_to=None, packages_select_build_failed=False, packages_skip_build_finished=False, packages_select_test_failures=False, packages_skip_test_passed=False, packages_select=['final_proj'], packages_skip=None, packages_select_regex=None, packages_skip_regex=None, packages_start=None, packages_end=None, allow_overriding=[], cmake_args=None, cmake_target=None, cmake_target_skip_unavailable=False, cmake_clean_cache=False, cmake_clean_first=False, cmake_force_configure=False, ament_cmake_args=None, catkin_cmake_args=None, catkin_skip_building_tests=False, verb_parser=<colcon_defaults.argument_parser.defaults.DefaultArgumentsDecorator object at 0xffff9ce4e350>, verb_extension=<colcon_core.verb.build.BuildVerb object at 0xffff9ce04b80>, main=<bound method BuildVerb.main of <colcon_core.verb.build.BuildVerb object at 0xffff9ce04b80>>)
+[6.821s] Level 1:colcon.colcon_core.package_discovery:discover_packages(colcon_meta) check parameters
+[6.822s] Level 1:colcon.colcon_core.package_discovery:discover_packages(recursive) check parameters
+[6.825s] Level 1:colcon.colcon_core.package_discovery:discover_packages(ignore) check parameters
+[6.825s] Level 1:colcon.colcon_core.package_discovery:discover_packages(path) check parameters
+[6.826s] Level 1:colcon.colcon_core.package_discovery:discover_packages(colcon_meta) discover
+[6.826s] Level 1:colcon.colcon_core.package_discovery:discover_packages(recursive) discover
+[6.827s] INFO:colcon.colcon_core.package_discovery:Crawling recursively for packages in '/home/ubuntu/ros2_ws/src/final_proj'
+[6.830s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['ignore', 'ignore_ament_install']
+[6.831s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'ignore'
+[6.834s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'ignore_ament_install'
+[6.835s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['colcon_pkg']
+[6.836s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'colcon_pkg'
+[6.837s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['colcon_meta']
+[6.837s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'colcon_meta'
+[6.837s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extensions ['ros']
+[6.841s] Level 1:colcon.colcon_core.package_identification:_identify(.) by extension 'ros'
+[7.230s] DEBUG:colcon.colcon_core.package_identification:Package '.' with type 'ros.ament_python' and name 'final_proj'
+[7.231s] Level 1:colcon.colcon_core.package_discovery:discover_packages(recursive) using defaults
+[7.231s] Level 1:colcon.colcon_core.package_discovery:discover_packages(ignore) discover
+[7.232s] Level 1:colcon.colcon_core.package_discovery:discover_packages(ignore) using defaults
+[7.232s] Level 1:colcon.colcon_core.package_discovery:discover_packages(path) discover
+[7.232s] Level 1:colcon.colcon_core.package_discovery:discover_packages(path) using defaults
+[7.581s] Level 1:colcon.colcon_core.package_discovery:discover_packages(prefix_path) check parameters
+[7.584s] Level 1:colcon.colcon_core.package_discovery:discover_packages(prefix_path) discover
+[7.701s] DEBUG:colcon.colcon_installed_package_information.package_discovery:Found 18 installed packages in /home/ubuntu/ros2_ws/install
+[7.746s] DEBUG:colcon.colcon_installed_package_information.package_discovery:Found 275 installed packages in /opt/ros/humble
+[7.776s] Level 1:colcon.colcon_core.package_discovery:discover_packages(prefix_path) using defaults
+[9.037s] Level 5:colcon.colcon_core.verb:set package 'final_proj' build argument 'cmake_args' from command line to 'None'
+[9.039s] Level 5:colcon.colcon_core.verb:set package 'final_proj' build argument 'cmake_target' from command line to 'None'
+[9.041s] Level 5:colcon.colcon_core.verb:set package 'final_proj' build argument 'cmake_target_skip_unavailable' from command line to 'False'
+[9.043s] Level 5:colcon.colcon_core.verb:set package 'final_proj' build argument 'cmake_clean_cache' from command line to 'False'
+[9.044s] Level 5:colcon.colcon_core.verb:set package 'final_proj' build argument 'cmake_clean_first' from command line to 'False'
+[9.046s] Level 5:colcon.colcon_core.verb:set package 'final_proj' build argument 'cmake_force_configure' from command line to 'False'
+[9.048s] Level 5:colcon.colcon_core.verb:set package 'final_proj' build argument 'ament_cmake_args' from command line to 'None'
+[9.050s] Level 5:colcon.colcon_core.verb:set package 'final_proj' build argument 'catkin_cmake_args' from command line to 'None'
+[9.051s] Level 5:colcon.colcon_core.verb:set package 'final_proj' build argument 'catkin_skip_building_tests' from command line to 'False'
+[9.053s] DEBUG:colcon.colcon_core.verb:Building package 'final_proj' with the following arguments: {'ament_cmake_args': None, 'build_base': '/home/ubuntu/ros2_ws/src/final_proj/build/final_proj', 'catkin_cmake_args': None, 'catkin_skip_building_tests': False, 'cmake_args': None, 'cmake_clean_cache': False, 'cmake_clean_first': False, 'cmake_force_configure': False, 'cmake_target': None, 'cmake_target_skip_unavailable': False, 'install_base': '/home/ubuntu/ros2_ws/src/final_proj/install/final_proj', 'merge_install': False, 'path': '/home/ubuntu/ros2_ws/src/final_proj', 'symlink_install': False, 'test_result_base': None}
+[9.058s] INFO:colcon.colcon_core.executor:Executing jobs using 'parallel' executor
+[9.086s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:run_until_complete
+[9.092s] INFO:colcon.colcon_ros.task.ament_python.build:Building ROS package in '/home/ubuntu/ros2_ws/src/final_proj' with build type 'ament_python'
+[9.095s] Level 1:colcon.colcon_core.shell:create_environment_hook('final_proj', 'ament_prefix_path')
+[9.130s] INFO:colcon.colcon_core.plugin_system:Skipping extension 'colcon_core.shell.bat': Not used on non-Windows systems
+[9.132s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/ubuntu/ros2_ws/src/final_proj/install/final_proj/share/final_proj/hook/ament_prefix_path.ps1'
+[9.137s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/ubuntu/ros2_ws/src/final_proj/install/final_proj/share/final_proj/hook/ament_prefix_path.dsv'
+[9.141s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/ubuntu/ros2_ws/src/final_proj/install/final_proj/share/final_proj/hook/ament_prefix_path.sh'
+[9.153s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[9.154s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[17.590s] INFO:colcon.colcon_core.task.python.build:Building Python package in '/home/ubuntu/ros2_ws/src/final_proj'
+[17.592s] INFO:colcon.colcon_core.shell:Skip shell extension 'powershell' for command environment: Not usable outside of PowerShell
+[17.593s] DEBUG:colcon.colcon_core.shell:Skip shell extension 'dsv' for command environment
+[29.480s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoking command in '/home/ubuntu/ros2_ws/src/final_proj': PYTHONPATH=/home/ubuntu/ros2_ws/src/final_proj/build/final_proj/prefix_override:/home/ubuntu/ros2_ws/src/final_proj/install/final_proj/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated setup.py egg_info --egg-base build/final_proj build --build-base /home/ubuntu/ros2_ws/src/final_proj/build/final_proj/build install --record /home/ubuntu/ros2_ws/src/final_proj/build/final_proj/install.log --single-version-externally-managed install_data
+[38.124s] DEBUG:colcon.colcon_core.event_handler.log_command:Invoked command in '/home/ubuntu/ros2_ws/src/final_proj' returned '0': PYTHONPATH=/home/ubuntu/ros2_ws/src/final_proj/build/final_proj/prefix_override:/home/ubuntu/ros2_ws/src/final_proj/install/final_proj/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated setup.py egg_info --egg-base build/final_proj build --build-base /home/ubuntu/ros2_ws/src/final_proj/build/final_proj/build install --record /home/ubuntu/ros2_ws/src/final_proj/build/final_proj/install.log --single-version-externally-managed install_data
+[38.147s] Level 1:colcon.colcon_core.environment:checking '/home/ubuntu/ros2_ws/src/final_proj/install/final_proj' for CMake module files
+[38.151s] Level 1:colcon.colcon_core.environment:checking '/home/ubuntu/ros2_ws/src/final_proj/install/final_proj' for CMake config files
+[38.157s] Level 1:colcon.colcon_core.environment:checking '/home/ubuntu/ros2_ws/src/final_proj/install/final_proj/lib'
+[38.158s] Level 1:colcon.colcon_core.environment:checking '/home/ubuntu/ros2_ws/src/final_proj/install/final_proj/bin'
+[38.158s] Level 1:colcon.colcon_core.environment:checking '/home/ubuntu/ros2_ws/src/final_proj/install/final_proj/lib/pkgconfig/final_proj.pc'
+[38.160s] Level 1:colcon.colcon_core.environment:checking '/home/ubuntu/ros2_ws/src/final_proj/install/final_proj/lib/python3.10/site-packages'
+[38.160s] Level 1:colcon.colcon_core.shell:create_environment_hook('final_proj', 'pythonpath')
+[38.162s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/ubuntu/ros2_ws/src/final_proj/install/final_proj/share/final_proj/hook/pythonpath.ps1'
+[38.164s] INFO:colcon.colcon_core.shell:Creating environment descriptor '/home/ubuntu/ros2_ws/src/final_proj/install/final_proj/share/final_proj/hook/pythonpath.dsv'
+[38.170s] INFO:colcon.colcon_core.shell:Creating environment hook '/home/ubuntu/ros2_ws/src/final_proj/install/final_proj/share/final_proj/hook/pythonpath.sh'
+[38.173s] Level 1:colcon.colcon_core.environment:checking '/home/ubuntu/ros2_ws/src/final_proj/install/final_proj/bin'
+[38.174s] Level 1:colcon.colcon_core.environment:create_environment_scripts_only(final_proj)
+[38.175s] INFO:colcon.colcon_core.shell:Creating package script '/home/ubuntu/ros2_ws/src/final_proj/install/final_proj/share/final_proj/package.ps1'
+[38.179s] INFO:colcon.colcon_core.shell:Creating package descriptor '/home/ubuntu/ros2_ws/src/final_proj/install/final_proj/share/final_proj/package.dsv'
+[38.183s] INFO:colcon.colcon_core.shell:Creating package script '/home/ubuntu/ros2_ws/src/final_proj/install/final_proj/share/final_proj/package.sh'
+[38.187s] INFO:colcon.colcon_core.shell:Creating package script '/home/ubuntu/ros2_ws/src/final_proj/install/final_proj/share/final_proj/package.bash'
+[38.191s] INFO:colcon.colcon_core.shell:Creating package script '/home/ubuntu/ros2_ws/src/final_proj/install/final_proj/share/final_proj/package.zsh'
+[38.194s] Level 1:colcon.colcon_core.environment:create_file_with_runtime_dependencies(/home/ubuntu/ros2_ws/src/final_proj/install/final_proj/share/colcon-core/packages/final_proj)
+[38.196s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:closing loop
+[38.198s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:loop closed
+[38.198s] DEBUG:colcon.colcon_parallel_executor.executor.parallel:run_until_complete finished with '0'
+[38.198s] DEBUG:colcon.colcon_core.event_reactor:joining thread
+[38.232s] INFO:colcon.colcon_core.plugin_system:Skipping extension 'colcon_notification.desktop_notification.terminal_notifier': Not used on non-Darwin systems
+[38.233s] INFO:colcon.colcon_core.plugin_system:Skipping extension 'colcon_notification.desktop_notification.win32': Not used on non-Windows systems
+[38.233s] INFO:colcon.colcon_notification.desktop_notification:Sending desktop notification using 'notify2'
+[38.330s] DEBUG:colcon.colcon_core.event_reactor:joined thread
+[38.332s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/ubuntu/ros2_ws/src/final_proj/install/local_setup.ps1'
+[38.337s] INFO:colcon.colcon_core.shell:Creating prefix util module '/home/ubuntu/ros2_ws/src/final_proj/install/_local_setup_util_ps1.py'
+[38.344s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/ubuntu/ros2_ws/src/final_proj/install/setup.ps1'
+[38.359s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/ubuntu/ros2_ws/src/final_proj/install/local_setup.sh'
+[38.363s] INFO:colcon.colcon_core.shell:Creating prefix util module '/home/ubuntu/ros2_ws/src/final_proj/install/_local_setup_util_sh.py'
+[38.367s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/ubuntu/ros2_ws/src/final_proj/install/setup.sh'
+[38.380s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/ubuntu/ros2_ws/src/final_proj/install/local_setup.bash'
+[38.383s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/ubuntu/ros2_ws/src/final_proj/install/setup.bash'
+[38.396s] INFO:colcon.colcon_core.shell:Creating prefix script '/home/ubuntu/ros2_ws/src/final_proj/install/local_setup.zsh'
+[38.399s] INFO:colcon.colcon_core.shell:Creating prefix chain script '/home/ubuntu/ros2_ws/src/final_proj/install/setup.zsh'

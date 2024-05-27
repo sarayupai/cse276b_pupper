@@ -1,0 +1,105 @@
+[0.000000] (-) TimerEvent: {}
+[0.001022] (final_proj) JobQueued: {'identifier': 'final_proj', 'dependencies': OrderedDict()}
+[0.002038] (final_proj) JobStarted: {'identifier': 'final_proj'}
+[0.098916] (-) TimerEvent: {}
+[0.200745] (-) TimerEvent: {}
+[0.303427] (-) TimerEvent: {}
+[0.404802] (-) TimerEvent: {}
+[0.505935] (-) TimerEvent: {}
+[0.606820] (-) TimerEvent: {}
+[0.707928] (-) TimerEvent: {}
+[0.808661] (-) TimerEvent: {}
+[0.909362] (-) TimerEvent: {}
+[1.010415] (-) TimerEvent: {}
+[1.111996] (-) TimerEvent: {}
+[1.212931] (-) TimerEvent: {}
+[1.313882] (-) TimerEvent: {}
+[1.414567] (-) TimerEvent: {}
+[1.515294] (-) TimerEvent: {}
+[1.616094] (-) TimerEvent: {}
+[1.716900] (-) TimerEvent: {}
+[1.817633] (-) TimerEvent: {}
+[1.918375] (-) TimerEvent: {}
+[2.019271] (-) TimerEvent: {}
+[2.120490] (-) TimerEvent: {}
+[2.221833] (-) TimerEvent: {}
+[2.323311] (-) TimerEvent: {}
+[2.424245] (-) TimerEvent: {}
+[2.525110] (-) TimerEvent: {}
+[2.626315] (-) TimerEvent: {}
+[2.727763] (-) TimerEvent: {}
+[2.828762] (-) TimerEvent: {}
+[2.929468] (-) TimerEvent: {}
+[3.030277] (-) TimerEvent: {}
+[3.131066] (-) TimerEvent: {}
+[3.231853] (-) TimerEvent: {}
+[3.332676] (-) TimerEvent: {}
+[3.433438] (-) TimerEvent: {}
+[3.534338] (-) TimerEvent: {}
+[3.636313] (-) TimerEvent: {}
+[3.740940] (-) TimerEvent: {}
+[3.843883] (-) TimerEvent: {}
+[3.950219] (-) TimerEvent: {}
+[4.053466] (-) TimerEvent: {}
+[4.155077] (-) TimerEvent: {}
+[4.256116] (-) TimerEvent: {}
+[4.356823] (-) TimerEvent: {}
+[4.457714] (-) TimerEvent: {}
+[4.558538] (-) TimerEvent: {}
+[4.659477] (-) TimerEvent: {}
+[4.760232] (-) TimerEvent: {}
+[4.860995] (-) TimerEvent: {}
+[4.962120] (-) TimerEvent: {}
+[5.063401] (-) TimerEvent: {}
+[5.165229] (-) TimerEvent: {}
+[5.246872] (final_proj) Command: {'cmd': ['/usr/bin/python3', '-W', 'ignore:setup.py install is deprecated', 'setup.py', 'egg_info', '--egg-base', 'build/final_proj', 'build', '--build-base', '/home/ubuntu/ros2_ws/src/final_proj/build/final_proj/build', 'install', '--record', '/home/ubuntu/ros2_ws/src/final_proj/build/final_proj/install.log', '--single-version-externally-managed', 'install_data'], 'cwd': '/home/ubuntu/ros2_ws/src/final_proj', 'env': {'LESSOPEN': '| /usr/bin/lesspipe %s', 'USER': 'ubuntu', 'XDG_SESSION_TYPE': 'x11', 'SHLVL': '1', 'LD_LIBRARY_PATH': '/home/ubuntu/ros2_ws/install/pupper_interfaces/lib:/home/ubuntu/ros2_ws/install/mini_pupper_interfaces/lib:/home/ubuntu/ros2_ws/install/champ_base/lib:/home/ubuntu/ros2_ws/install/champ_msgs/lib:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/aarch64-linux-gnu:/opt/ros/humble/lib', 'HOME': '/home/ubuntu', 'OLDPWD': '/home/ubuntu/ros2_ws/src/final_proj/final_proj', 'DESKTOP_SESSION': 'ubuntu', 'ROS_PYTHON_VERSION': '3', 'GNOME_SHELL_SESSION_MODE': 'ubuntu', 'GTK_MODULES': 'gail:atk-bridge', 'SYSTEMD_EXEC_PID': '1894', 'DBUS_SESSION_BUS_ADDRESS': 'unix:path=/run/user/1000/bus', 'COLORTERM': 'truecolor', 'COLCON_PREFIX_PATH': '/home/ubuntu/ros2_ws/install', 'ROS_DISTRO': 'humble', 'GTK_IM_MODULE': 'ibus', 'LOGNAME': 'ubuntu', '_': '/usr/bin/colcon', 'ROS_VERSION': '2', 'XDG_SESSION_CLASS': 'user', 'USERNAME': 'ubuntu', 'TERM': 'xterm-256color', 'GNOME_DESKTOP_SESSION_ID': 'this-is-deprecated', 'ROS_LOCALHOST_ONLY': '1', 'WINDOWPATH': '2', 'PATH': '/home/ubuntu/ros2_ws/install/champ_base/bin:/opt/ros/humble/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin', 'SESSION_MANAGER': 'local/minipupperv2:@/tmp/.ICE-unix/1871,unix/minipupperv2:/tmp/.ICE-unix/1871', 'XDG_MENU_PREFIX': 'gnome-', 'GNOME_TERMINAL_SCREEN': '/org/gnome/Terminal/screen/b277a550_3c4d_4cd9_a9ca_03ea30a38890', 'XDG_RUNTIME_DIR': '/run/user/1000', 'DISPLAY': ':1', 'LANG': 'C.UTF-8', 'XDG_CURRENT_DESKTOP': 'ubuntu:GNOME', 'XMODIFIERS': '@im=ibus', 'XDG_SESSION_DESKTOP': 'ubuntu', 'XAUTHORITY': '/run/user/1000/gdm/Xauthority', 'LS_COLORS': 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:', 'GNOME_TERMINAL_SERVICE': ':1.79', 'SSH_AGENT_LAUNCHER': 'gnome-keyring', 'SSH_AUTH_SOCK': '/run/user/1000/keyring/ssh', 'AMENT_PREFIX_PATH': '/home/ubuntu/ros2_ws/install/go_pupper_srv:/home/ubuntu/ros2_ws/install/final_proj:/home/ubuntu/ros2_ws/install/pupper_interfaces:/home/ubuntu/ros2_ws/install/mini_pupper_music:/home/ubuntu/ros2_ws/install/mini_pupper_dance:/home/ubuntu/ros2_ws/install/mini_pupper_interfaces:/home/ubuntu/ros2_ws/install/mini_pupper_driver:/home/ubuntu/ros2_ws/install/mini_pupper_description:/home/ubuntu/ros2_ws/install/mini_pupper_bringup:/home/ubuntu/ros2_ws/install/mini_pupper_2_description:/home/ubuntu/ros2_ws/install/ldlidar_stl_ros2:/home/ubuntu/ros2_ws/install/champ_teleop:/home/ubuntu/ros2_ws/install/champ_bringup:/home/ubuntu/ros2_ws/install/champ_base:/home/ubuntu/ros2_ws/install/champ_msgs:/home/ubuntu/ros2_ws/install/champ_description:/home/ubuntu/ros2_ws/install/champ_config:/home/ubuntu/ros2_ws/install/champ:/opt/ros/humble', 'SHELL': '/bin/bash', 'QT_ACCESSIBILITY': '1', 'GDMSESSION': 'ubuntu', 'LESSCLOSE': '/usr/bin/lesspipe %s %s', 'GPG_AGENT_INFO': '/run/user/1000/gnupg/S.gpg-agent:0:1', 'QT_IM_MODULE': 'ibus', 'PWD': '/home/ubuntu/ros2_ws/src/final_proj/build/final_proj', 'XDG_CONFIG_DIRS': '/etc/xdg/xdg-ubuntu:/etc/xdg', 'XDG_DATA_DIRS': '/usr/share/ubuntu:/usr/share/gnome:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop', 'PYTHONPATH': '/home/ubuntu/ros2_ws/src/final_proj/build/final_proj/prefix_override:/home/ubuntu/ros2_ws/src/final_proj/install/final_proj/lib/python3.10/site-packages:/home/ubuntu/ros2_ws/install/go_pupper_srv/lib/python3.10/site-packages:/home/ubuntu/ros2_ws/install/final_proj/lib/python3.10/site-packages:/home/ubuntu/ros2_ws/install/pupper_interfaces/local/lib/python3.10/dist-packages:/home/ubuntu/ros2_ws/build/mini_pupper_music:/home/ubuntu/ros2_ws/install/mini_pupper_music/lib/python3.10/site-packages:/home/ubuntu/ros2_ws/build/mini_pupper_dance:/home/ubuntu/ros2_ws/install/mini_pupper_dance/lib/python3.10/site-packages:/home/ubuntu/ros2_ws/install/mini_pupper_interfaces/local/lib/python3.10/dist-packages:/home/ubuntu/ros2_ws/build/mini_pupper_driver:/home/ubuntu/ros2_ws/install/mini_pupper_driver/lib/python3.10/site-packages:/home/ubuntu/ros2_ws/install/champ_bringup/local/lib/python3.10/dist-packages:/home/ubuntu/ros2_ws/install/champ_msgs/local/lib/python3.10/dist-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages', 'COLCON': '1', 'VTE_VERSION': '6800', 'CMAKE_PREFIX_PATH': '/home/ubuntu/ros2_ws/install/pupper_interfaces:/home/ubuntu/ros2_ws/install/mini_pupper_interfaces:/home/ubuntu/ros2_ws/install/mini_pupper_description:/home/ubuntu/ros2_ws/install/mini_pupper_bringup:/home/ubuntu/ros2_ws/install/mini_pupper_2_description:/home/ubuntu/ros2_ws/install/ldlidar_stl_ros2:/home/ubuntu/ros2_ws/install/champ_teleop:/home/ubuntu/ros2_ws/install/champ_bringup:/home/ubuntu/ros2_ws/install/champ_base:/home/ubuntu/ros2_ws/install/champ_msgs:/home/ubuntu/ros2_ws/install/champ_description:/home/ubuntu/ros2_ws/install/champ_config:/home/ubuntu/ros2_ws/install/champ'}, 'shell': False}
+[5.265471] (-) TimerEvent: {}
+[5.366504] (-) TimerEvent: {}
+[5.467862] (-) TimerEvent: {}
+[5.568699] (-) TimerEvent: {}
+[5.669656] (-) TimerEvent: {}
+[5.771150] (-) TimerEvent: {}
+[5.871887] (-) TimerEvent: {}
+[5.972586] (-) TimerEvent: {}
+[6.073412] (-) TimerEvent: {}
+[6.174197] (-) TimerEvent: {}
+[6.275068] (-) TimerEvent: {}
+[6.375852] (-) TimerEvent: {}
+[6.476568] (-) TimerEvent: {}
+[6.577283] (-) TimerEvent: {}
+[6.678117] (-) TimerEvent: {}
+[6.778873] (-) TimerEvent: {}
+[6.879607] (-) TimerEvent: {}
+[6.980408] (-) TimerEvent: {}
+[7.064405] (final_proj) StdoutLine: {'line': b'running egg_info\n'}
+[7.067829] (final_proj) StdoutLine: {'line': b'writing build/final_proj/final_proj.egg-info/PKG-INFO\n'}
+[7.069115] (final_proj) StdoutLine: {'line': b'writing dependency_links to build/final_proj/final_proj.egg-info/dependency_links.txt\n'}
+[7.070283] (final_proj) StdoutLine: {'line': b'writing entry points to build/final_proj/final_proj.egg-info/entry_points.txt\n'}
+[7.071242] (final_proj) StdoutLine: {'line': b'writing requirements to build/final_proj/final_proj.egg-info/requires.txt\n'}
+[7.072059] (final_proj) StdoutLine: {'line': b'writing top-level names to build/final_proj/final_proj.egg-info/top_level.txt\n'}
+[7.080582] (-) TimerEvent: {}
+[7.084177] (final_proj) StdoutLine: {'line': b"reading manifest file 'build/final_proj/final_proj.egg-info/SOURCES.txt'\n"}
+[7.089610] (final_proj) StdoutLine: {'line': b"writing manifest file 'build/final_proj/final_proj.egg-info/SOURCES.txt'\n"}
+[7.090564] (final_proj) StdoutLine: {'line': b'running build\n'}
+[7.091204] (final_proj) StdoutLine: {'line': b'running build_py\n'}
+[7.092552] (final_proj) StdoutLine: {'line': b'copying final_proj/main.py -> /home/ubuntu/ros2_ws/src/final_proj/build/final_proj/build/lib/final_proj\n'}
+[7.095590] (final_proj) StdoutLine: {'line': b'running install\n'}
+[7.097174] (final_proj) StdoutLine: {'line': b'running install_lib\n'}
+[7.101765] (final_proj) StdoutLine: {'line': b'copying /home/ubuntu/ros2_ws/src/final_proj/build/final_proj/build/lib/final_proj/main.py -> /home/ubuntu/ros2_ws/src/final_proj/install/final_proj/lib/python3.10/site-packages/final_proj\n'}
+[7.107373] (final_proj) StdoutLine: {'line': b'byte-compiling /home/ubuntu/ros2_ws/src/final_proj/install/final_proj/lib/python3.10/site-packages/final_proj/main.py to main.cpython-310.pyc\n'}
+[7.111213] (final_proj) StdoutLine: {'line': b'running install_data\n'}
+[7.112046] (final_proj) StdoutLine: {'line': b'running install_egg_info\n'}
+[7.121816] (final_proj) StdoutLine: {'line': b"removing '/home/ubuntu/ros2_ws/src/final_proj/install/final_proj/lib/python3.10/site-packages/final_proj-0.0.0-py3.10.egg-info' (and everything under it)\n"}
+[7.124090] (final_proj) StdoutLine: {'line': b'Copying build/final_proj/final_proj.egg-info to /home/ubuntu/ros2_ws/src/final_proj/install/final_proj/lib/python3.10/site-packages/final_proj-0.0.0-py3.10.egg-info\n'}
+[7.131737] (final_proj) StdoutLine: {'line': b'running install_scripts\n'}
+[7.180788] (-) TimerEvent: {}
+[7.253464] (final_proj) StdoutLine: {'line': b'Installing client script to /home/ubuntu/ros2_ws/src/final_proj/install/final_proj/lib/final_proj\n'}
+[7.254769] (final_proj) StdoutLine: {'line': b'Installing maze script to /home/ubuntu/ros2_ws/src/final_proj/install/final_proj/lib/final_proj\n'}
+[7.256014] (final_proj) StdoutLine: {'line': b'Installing service script to /home/ubuntu/ros2_ws/src/final_proj/install/final_proj/lib/final_proj\n'}
+[7.258764] (final_proj) StdoutLine: {'line': b"writing list of installed files to '/home/ubuntu/ros2_ws/src/final_proj/build/final_proj/install.log'\n"}
+[7.281131] (-) TimerEvent: {}
+[7.382482] (-) TimerEvent: {}
+[7.478842] (final_proj) CommandEnded: {'returncode': 0}
+[7.482973] (-) TimerEvent: {}
+[7.539238] (final_proj) JobEnded: {'identifier': 'final_proj', 'rc': 0}
+[7.543546] (-) EventReactorShutdown: {}

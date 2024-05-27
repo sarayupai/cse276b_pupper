@@ -1,0 +1,26 @@
+[6.047s] Invoking command in '/home/ubuntu/ros2_ws/src/final_proj': PYTHONPATH=/home/ubuntu/ros2_ws/src/final_proj/build/final_proj/prefix_override:/home/ubuntu/ros2_ws/src/final_proj/install/final_proj/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated setup.py egg_info --egg-base build/final_proj build --build-base /home/ubuntu/ros2_ws/src/final_proj/build/final_proj/build install --record /home/ubuntu/ros2_ws/src/final_proj/build/final_proj/install.log --single-version-externally-managed install_data
+[7.837s] running egg_info
+[7.839s] writing build/final_proj/final_proj.egg-info/PKG-INFO
+[7.841s] writing dependency_links to build/final_proj/final_proj.egg-info/dependency_links.txt
+[7.842s] writing entry points to build/final_proj/final_proj.egg-info/entry_points.txt
+[7.843s] writing requirements to build/final_proj/final_proj.egg-info/requires.txt
+[7.844s] writing top-level names to build/final_proj/final_proj.egg-info/top_level.txt
+[7.856s] reading manifest file 'build/final_proj/final_proj.egg-info/SOURCES.txt'
+[7.861s] writing manifest file 'build/final_proj/final_proj.egg-info/SOURCES.txt'
+[7.861s] running build
+[7.862s] running build_py
+[7.863s] copying final_proj/main.py -> /home/ubuntu/ros2_ws/src/final_proj/build/final_proj/build/lib/final_proj
+[7.866s] running install
+[7.868s] running install_lib
+[7.872s] copying /home/ubuntu/ros2_ws/src/final_proj/build/final_proj/build/lib/final_proj/main.py -> /home/ubuntu/ros2_ws/src/final_proj/install/final_proj/lib/python3.10/site-packages/final_proj
+[7.878s] byte-compiling /home/ubuntu/ros2_ws/src/final_proj/install/final_proj/lib/python3.10/site-packages/final_proj/main.py to main.cpython-310.pyc
+[7.882s] running install_data
+[7.883s] running install_egg_info
+[7.893s] removing '/home/ubuntu/ros2_ws/src/final_proj/install/final_proj/lib/python3.10/site-packages/final_proj-0.0.0-py3.10.egg-info' (and everything under it)
+[7.895s] Copying build/final_proj/final_proj.egg-info to /home/ubuntu/ros2_ws/src/final_proj/install/final_proj/lib/python3.10/site-packages/final_proj-0.0.0-py3.10.egg-info
+[7.903s] running install_scripts
+[8.047s] Installing client script to /home/ubuntu/ros2_ws/src/final_proj/install/final_proj/lib/final_proj
+[8.048s] Installing maze script to /home/ubuntu/ros2_ws/src/final_proj/install/final_proj/lib/final_proj
+[8.049s] Installing service script to /home/ubuntu/ros2_ws/src/final_proj/install/final_proj/lib/final_proj
+[8.052s] writing list of installed files to '/home/ubuntu/ros2_ws/src/final_proj/build/final_proj/install.log'
+[8.245s] Invoked command in '/home/ubuntu/ros2_ws/src/final_proj' returned '0': PYTHONPATH=/home/ubuntu/ros2_ws/src/final_proj/build/final_proj/prefix_override:/home/ubuntu/ros2_ws/src/final_proj/install/final_proj/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated setup.py egg_info --egg-base build/final_proj build --build-base /home/ubuntu/ros2_ws/src/final_proj/build/final_proj/build install --record /home/ubuntu/ros2_ws/src/final_proj/build/final_proj/install.log --single-version-externally-managed install_data

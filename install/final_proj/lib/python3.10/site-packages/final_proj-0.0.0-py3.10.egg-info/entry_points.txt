@@ -1,0 +1,5 @@
+[console_scripts]
+client = final_proj.client_go_pupper:main
+maze = final_proj.main:main
+service = final_proj.service_go_pupper:main
+
