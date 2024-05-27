@@ -1,38 +1,44 @@
 {
     "red": {
-        "Q1": {
-            "question": "What is 2 + 2?",
-            "choices": ["1", "2", "3", "4"],
-            "correct_answer": "4"
+        "1": {
+            "question": ["What is the product of 50 and 2?", "A) 100", "B) 2500", "C) 1225", "D) 49"],
+            "correct_answer": "1" 
         },
-        "Q2": {
-            "question": "What is 3 * 3?",
-            "choices": ["6", "7", "8", "9"],
-            "correct_answer": "9"
+        "2": {
+            "question": ["What is the square root of 225?", "A) 13", "B) 14", "C) 15", "D) 16"],
+            "correct_answer": "3" 
+        },
+        "3": {
+            "question": ["What is the result of adding 87 and 24?", "A) 101", "B) 111", "C) 110", "D) 90"],
+            "correct_answer": "2" 
         }
     },
     "green": {
-        "Q1": {
-            "question": "What is the chemical symbol for water?",
-            "choices": ["H2O", "O2", "CO2", "HO"],
-            "correct_answer": "H2O"
+        "1": {
+            "question": ["What is the name of the main protagonist in the maze runner series?", "A) Newt", "B) Minho", "C) Thomas", "D) Gally"],
+            "correct_answer": "3" 
         },
-        "Q2": {
-            "question": "What planet is known as the Red Planet?",
-            "choices": ["Earth", "Mars", "Jupiter", "Saturn"],
-            "correct_answer": "Mars"
+        "2": {
+            "question": ["Who played the character Thomas in the Maze Runner movies?", "A) Thomas Sangster", "B) Will Poulter", "C) Theo James", "D) Dylan O'Brien"],
+            "correct_answer": "4" 
+        },
+        "3": {
+            "question": ["What is the name of the second book in the Maze Runner Series?", "A) The Death Cure", "B) The Scorch Trials", "C) The Kill Order", "D) The Fever Code"],
+            "correct_answer": "2" 
         }
     },
     "blue": {
-        "Q1": {
-            "question": "What is the chemical symbol for water?",
-            "choices": ["H2O", "O2", "CO2", "HO"],
-            "correct_answer": "H2O"
+        "1": {
+            "question": ["What is the capital city of the country that is home to the Amazon rainforest?", "A) Buenos Aires", "B) Brasilia", "C) Lima", "D) Bogota"],
+            "correct_answer": "Brasilia" 
         },
-        "Q2": {
-            "question": "What planet is known as the Red Planet?",
-            "choices": ["Earth", "Mars", "Jupiter", "Saturn"],
-            "correct_answer": "Mars"
+        "2": {
+            "question": ["Which continent is the Sahara Desert located in?", "A) Asia", "B) Africa", "C) South America", "D) Australia"],
+            "correct_answer": "2" 
+        },
+        "3": {
+            "question": ["In which year did the Berlin Wall fall?", "A) 1985", "B) 1987", "C) 1989", "D) 1991"],
+            "correct_answer": "3" 
         }
     }
 }
