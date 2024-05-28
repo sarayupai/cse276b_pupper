@@ -18,7 +18,10 @@ import rclpy
 #import time
 import RPi.GPIO as GPIO
 from rclpy.node import Node
-from pynput import keyboard
+#from pynput import keyboard
+
+import pygame 
+
 
 ###
 # Method: Sample Controller Async
@@ -52,12 +55,12 @@ class SampleControllerAsync(Node):
         self.client = client
         
         # TODO: keyboard listener
-        self.listener = keyboard.Listener(sensor_movement=self.sensor_movement)
-        self.listener.start()
-        self.get_logger().info('keyboard listener started')
+        #self.listener = keyboard.Listener(sensor_movement=self.sensor_movement)
+        #self.listener.start()
+        #self.get_logger().info('keyboard listener started')
     
     def sensor_movement(self, key):
-        while True:
+        #while True:
             '''
             # Store detection
             touchValue_Front = GPIO.input(touchPin_Front)
@@ -65,45 +68,59 @@ class SampleControllerAsync(Node):
             touchValue_Left = GPIO.input(touchPin_Left)
             touchValue_Right = GPIO.input(touchPin_Right)
             '''
-            display_sting = ''
+        display_string = ''
             
-            # check right 
-            # if not touchValue_Right:
-            if key == keyboard.Key.right:
-                display_sting += ' Right'
-                self.client.send_move_request("turn_right")
+        # check right 
+        # if not touchValue_Right:
+        if key == pygame.K_RIGHT:
+        #if key == keyboard.Key.right:
+            display_string += ' Right'
+            self.client.send_move_request("turn_right")
      				
-     	    # check left 
-            # if not touchValue_Left:
-            elif key == keyboard.Key.left:
-                display_sting += ' Left'
-                self.client.send_move_request("turn_left")
+     	# check left 
+        # if not touchValue_Left:
+        elif key = pygame.K_LEFT:
+        #elif key == keyboard.Key.left:
+            display_string += ' Left'
+            self.client.send_move_request("turn_left")
                 
-            # check front
-            # if not touchValue_Front:
-            elif key == keyboard.Key.up:
-                display_sting += ' Front'
-                self.client.send_move_request("move_forward")
+        # check front
+        # if not touchValue_Front:
+        elif key = pygame.K_UP:
+        #elif key == keyboard.Key.up:
+            display_string += ' Front'
+            self.client.send_move_request("move_forward")
      	        
-     	    # check back
-            # if not touchValue_Back:
-            elif key == keyboard.Key.down:
-                display_sting += ' Back'
-                self.client.send_move_request("move_backward")
+     	# check back
+        # if not touchValue_Back:
+        elif key = pygame.Key_DOWN:
+        #elif key == keyboard.Key.down:
+            display_string += ' Back'
+            self.client.send_move_request("move_backward")
                 
-            if display_sting == '':
-                display_sting = 'No button touched'
-            print(display_sting)
+        if display_string == '':
+            display_string = 'No button touched'
+            print(display_string)
             # time.sleep(0.5)
-            
+
+# main function to test move functionality             
 def main():
     rclpy.init()
     client = MinimalClientAsync()
     mover = SampleControllerAsync(client)
     
     # TODO: erroing bc cant pass in key
-    mover.sensor_movement()
+    #mover.sensor_movement()
+
     
+    pygame.init()
+    while True:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+            if event.type == pygame.KEYDOWN:
+                mover.sensor_movement(event.key)
+
     # This spins up a client node, checks if it's done, throws an exception of there's an issue
     # (Probably a bit redundant with other code and can be simplified. But right now it works, so ¯\_(ツ)_/¯)
     while rclpy.ok():

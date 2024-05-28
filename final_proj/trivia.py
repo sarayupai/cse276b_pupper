@@ -1,7 +1,7 @@
 ########
 # Name: trivia.py
 #
-# Purpose: A trivia database. Selects questions. checks answrrs .
+# Purpose: A trivia that creates a trivia database, selects questions, and checks answers.
 #
 # Author: Prisha Anand, Advika Sonti, Sarayu Pai 
 #
@@ -12,6 +12,8 @@
 # Packages to let us create nodes and spin them up
 import rclpy
 from rclpy.node import Node
+import json 
+import random 
 
 ###
 # Method: 
@@ -20,31 +22,27 @@ from rclpy.node import Node
 ######
 class Trivia(Node):
 
-    def __init__(self):
+    def __init__(self, filename):
         # initalize
         super().__init__('trivia')
-        # create database - ie pull from json + populate dict 
-        self.database = ['q+a', 0]
-'''
+        # Read JSON data from a file
+        with open(filename, 'r') as file:
+            self.database = json.load(file)
  
     ###
     # Name: get_question 
-    # Purpose: get random question from category selected + read out q+a to user  
+    # Purpose: get key and content of random question from category selected 
     # Arguments: self(reference the current class), category 
-    # Outputs: key of question 
+    # Outputs: key of question, question and answer content  
     def get_question(self, category):
-    	self.database[category] 
-    	
-    	return key 
-    	
-       
+        key = random.randint(1, 3)
+    	question = " ".join(self.database[category][key]['question'])
+    	return key, question  
+  
     ###
     # Name: check_answer 
     # Purpose: check whether the user answered the question correctly 
-    # Arguments:  self (reference the current class), key (the id of the question), quess (the user's answer guess)
+    # Arguments:  self (reference the current class), color (the question category), key (the id of the question), guess (the user's answer guess)
     #####
-    def check_answer(self, key, guess):
-    	correct = False 
-    
-    	return correct 
-'''
+    def check_answer(self, color, key, guess):
+    	return self.database[color][key]["correct_answer"] == guess 
