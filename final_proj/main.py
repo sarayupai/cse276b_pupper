@@ -59,13 +59,12 @@ def main():
             audio.speak(question)
             # get user answer + stop audio
             guess = get_user_answer()
-    	    audio.stop_speak()
+            audio.stop_speak()
             correct = trivia.check_answer(color, question_key, guess)
             # if answer is correct, exit trivia mode, else repeat with new question 
-    	    if correct: 
-    	        return 
- 
-    
+            if correct:
+                return 
+
     '''
     # game loop 
     while(play):

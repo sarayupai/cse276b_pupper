@@ -36,13 +36,13 @@ class Trivia(Node):
     # Outputs: key of question, question and answer content  
     def get_question(self, category):
         key = random.randint(1, 3)
-    	question = " ".join(self.database[category][key]['question'])
-    	return key, question  
-  
+        question = " ".join(self.database[category][key]['question'])
+        return key, question
+
     ###
     # Name: check_answer 
     # Purpose: check whether the user answered the question correctly 
     # Arguments:  self (reference the current class), color (the question category), key (the id of the question), guess (the user's answer guess)
     #####
     def check_answer(self, color, key, guess):
-    	return self.database[color][key]["correct_answer"] == guess 
+        return self.database[color][key]["correct_answer"] == guess

@@ -61,40 +61,39 @@ class SampleControllerAsync(Node):
     
     def sensor_movement(self, key):
         #while True:
-            '''
-            # Store detection
-            touchValue_Front = GPIO.input(touchPin_Front)
-            touchValue_Back = GPIO.input(touchPin_Back)
-            touchValue_Left = GPIO.input(touchPin_Left)
-            touchValue_Right = GPIO.input(touchPin_Right)
-            '''
+        '''
+        # Store detection
+        touchValue_Front = GPIO.input(touchPin_Front)
+        touchValue_Back = GPIO.input(touchPin_Back)
+        touchValue_Left = GPIO.input(touchPin_Left)
+        touchValue_Right = GPIO.input(touchPin_Right)
+        '''
         display_string = ''
             
         # check right 
         # if not touchValue_Right:
         if key == pygame.K_RIGHT:
-        #if key == keyboard.Key.right:
+            #if key == keyboard.Key.right:
             display_string += ' Right'
             self.client.send_move_request("turn_right")
-     				
-     	# check left 
+     	# check left
         # if not touchValue_Left:
         elif key = pygame.K_LEFT:
-        #elif key == keyboard.Key.left:
+            #elif key == keyboard.Key.left:
             display_string += ' Left'
             self.client.send_move_request("turn_left")
                 
         # check front
         # if not touchValue_Front:
         elif key = pygame.K_UP:
-        #elif key == keyboard.Key.up:
+            #elif key == keyboard.Key.up:
             display_string += ' Front'
             self.client.send_move_request("move_forward")
      	        
      	# check back
         # if not touchValue_Back:
         elif key = pygame.Key_DOWN:
-        #elif key == keyboard.Key.down:
+            #elif key == keyboard.Key.down:
             display_string += ' Back'
             self.client.send_move_request("move_backward")
                 
