@@ -45,18 +45,18 @@ class MinimalClientAsync(Node):
         super().__init__('minimal_client_async')
         #super().__init__('client_go_pupper')
         self.cli = self.create_client(GoPupper, 'pup_command')
-        self.play_aud_cli = self.create_client(PlayMusic, '/play_music'); 
-        self.stop_aud_cli = self.create_client(StopMusic, '/stop_music');
+        self.play_aud_cli = self.create_client(PlayMusic, '/play_music') 
+        self.stop_aud_cli = self.create_client(StopMusic, '/stop_music')
 
 
         # "The while loop in the constructor checks if a service matching the type and name of the client 
         # is available once a second." 
         while not self.cli.wait_for_service(timeout_sec=1.0):
             self.get_logger().info('service not available, waiting again...')
-        # while not self.play_aud_cli.wait_for_service(timeout_sec=1.0):
-            # self.get_logger().info('service play not available, waiting again...')
-        # while not self.stop_aud_cli.wait_for_service(timeout_sec=1.0):
-            # self.get_logger().info('service stop not available, waiting again...')
+        while not self.play_aud_cli.wait_for_service(timeout_sec=1.0):
+            self.get_logger().info('service play not available, waiting again...')
+        while not self.stop_aud_cli.wait_for_service(timeout_sec=1.0):
+            self.get_logger().info('service stop not available, waiting again...')
 
         # "Finally it creates a new request object.""
         # self.req = GoPupper.Request()
