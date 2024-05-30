@@ -18,7 +18,7 @@
 ########
 
 # Import the ROS2 interface we wrote, called GoPupper. This specifies the message type.
-from pupper_interfaces.srv import GoPupper
+#from pupper_interfaces.srv import GoPupper
 # , PlayAudio, StopAudio
 from mini_pupper_interfaces.srv import PlayMusic, StopMusic
 
@@ -44,15 +44,15 @@ class MinimalClientAsync(Node):
     def __init__(self):
         super().__init__('minimal_client_async')
         #super().__init__('client_go_pupper')
-        self.cli = self.create_client(GoPupper, 'pup_command')
+        #self.cli = self.create_client(GoPupper, 'pup_command')
         self.play_aud_cli = self.create_client(PlayMusic, '/play_music') 
         self.stop_aud_cli = self.create_client(StopMusic, '/stop_music')
 
 
         # "The while loop in the constructor checks if a service matching the type and name of the client 
         # is available once a second." 
-        while not self.cli.wait_for_service(timeout_sec=1.0):
-            self.get_logger().info('service not available, waiting again...')
+        #while not self.cli.wait_for_service(timeout_sec=1.0):
+        #    self.get_logger().info('service not available, waiting again...')
         while not self.play_aud_cli.wait_for_service(timeout_sec=1.0):
             self.get_logger().info('service play not available, waiting again...')
         while not self.stop_aud_cli.wait_for_service(timeout_sec=1.0):
@@ -66,13 +66,14 @@ class MinimalClientAsync(Node):
     # Purpose: send_move_request method, send request and spin until receive response or fail
     # Arguments:  self (reference the current class), move_command (the command we plan to send to the server)
     #####
+    '''
     def send_move_request(self, move_command):
         self.req = GoPupper.Request()
         self.req.command = move_command
         print("In send_move_request, command is: %s" % self.req.command)
         self.future = self.cli.call_async(self.req)  # send the command to the server
         rclpy.spin_until_future_complete(self, self.future)
-        return self.future.result()
+        return self.future.result()'''
         
      # send audio request to play
     def send_audio_request(self, filename):
@@ -106,7 +107,7 @@ def main(args=None):
     # debug - comment in/our as needed
     #print("In client, got this command: %s" % cmd)
     # Call send move request (which sends cmd to server)
-    minimal_client.send_move_request(cmd)
+    #minimal_client.send_move_request(cmd)
     # minimal_client.send_audio_request(cmd)
 
     # This spins up a client node, checks if it's done, throws an exception of there's an issue

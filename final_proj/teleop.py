@@ -16,7 +16,7 @@ from geometry_msgs.msg import Pose as Pose
 from geometry_msgs.msg import Twist
 from rclpy.node import Node
 from sensor_msgs.msg import Joy
-# from color_detect import Color_Detection
+from std_msgs.msg import Bool 
 import random
 
 def quaternion_from_euler(roll, pitch, yaw):
@@ -43,14 +43,13 @@ def quaternion_from_euler(roll, pitch, yaw):
 class Teleop(Node):
     def __init__(self):
         super().__init__('champ_teleop')
-		
-        #self.color_detect = Color_Detect()
         
         self.velocity_publisher = self.create_publisher(Twist, 'cmd_vel', 1)
         self.pose_lite_publisher = self.create_publisher(PoseLite, 'body_pose/raw', 1)
         self.pose_publisher = self.create_publisher(Pose, 'body_pose', 1)
         
         self.joy_subscriber = self.create_subscription(Joy, 'joy', self.joy_callback, 1)
+        self.subscription = self.create_subscription(Bool, 'enable_movement', self.poll_keys, 10)
 
         self.declare_parameter("gait/swing_height", 0)
         self.declare_parameter("gait/nominal_height", 0)
@@ -113,9 +112,9 @@ Moving around:
 
         self.pose_publisher.publish(body_pose)
 
-    def poll_keys(self):
+    def poll_keys(self, msg):
         self.settings = termios.tcgetattr(sys.stdin)
-
+        # TODO these need to be outside the loop
         x = 0
         y = 0
         z = 0
@@ -130,10 +129,29 @@ Moving around:
             print(self.msg)
             print(self.vels( self.speed, self.turn))
 
-            while rclpy.ok():
-            
-                #if not color_detect.detect():
-                if 1 == random.randint(1, 1000):
+            if msg.data:
+                key = self.getKey()
+                if key in self.velocityBindings.keys():
+                    x = self.velocityBindings[key][0]
+                    y = self.velocityBindings[key][1]
+                    z = self.velocityBindings[key][2]
+                    th = self.velocityBindings[key][3]
+                    
+                    if cmd_attempts > 1:
+                        twist = Twist()
+                        twist.linear.x = x *self.speed
+                        twist.linear.y = y * self.speed
+                        twist.linear.z = z * self.speed
+                        twist.angular.x = 0.0
+                        twist.angular.y = 0.0
+                        twist.angular.z = th * self.turn
+                        self.velocity_publisher.publish(twist)
+
+                    cmd_attempts += 1
+
+                else:
+                    cmd_attempts = 0
+                    #if (key == '\x03'):
                     twist = Twist()
                     twist.linear.x = 0.0
                     twist.linear.y = 0.0
@@ -142,31 +160,16 @@ Moving around:
                     twist.angular.y = 0.0
                     twist.angular.z = 0.0
                     self.velocity_publisher.publish(twist)
-                    return  
-                else:
-                    key = self.getKey()
-                    if key in self.velocityBindings.keys():
-                        x = self.velocityBindings[key][0]
-                        y = self.velocityBindings[key][1]
-                        z = self.velocityBindings[key][2]
-                        th = self.velocityBindings[key][3]
-                    
-                        if cmd_attempts > 1:
-                            twist = Twist()
-                            twist.linear.x = x *self.speed
-                            twist.linear.y = y * self.speed
-                            twist.linear.z = z * self.speed
-                            twist.angular.x = 0.0
-                            twist.angular.y = 0.0
-                            twist.angular.z = th * self.turn
-                            self.velocity_publisher.publish(twist)
-
-                        cmd_attempts += 1
-
-                    else:
-                        cmd_attempts = 0
-                        if (key == '\x03'):
-                            break
+            # not sure if this is needed
+            else:
+                twist = Twist()
+                twist.linear.x = 0.0
+                twist.linear.y = 0.0
+                twist.linear.z = 0.0
+                twist.angular.x = 0.0
+                twist.angular.y = 0.0
+                twist.angular.z = 0.0
+                self.velocity_publisher.publish(twist)
 
         except Exception as e:
             print(e)
@@ -199,6 +202,12 @@ Moving around:
     def map(self, x, in_min, in_max, out_min, out_max):
         return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
 
-if __name__ == "__main__":
+def main():
     rclpy.init()
     teleop = Teleop()
+    rclpy.spin(teleop)
+    teleop.destroy_node()
+    rclpy.shutdown()
+
+if __name__ == "__main__":
+    main()
