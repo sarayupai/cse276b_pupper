@@ -21,11 +21,13 @@ from std_msgs.msg import String
 
 
 class Game(Node):
-    def __init__(self):
+    def __init__(self, audio):
         # initialize 
         super().__init__('game')
         self.subscription = self.create_subscription(String, 'color_detection', self.game_loop, 10)
         self.publisher = self.create_publisher(Bool, 'enable_movement', 10)
+        self.trivia = Trivia('/home/ubuntu/ros2_ws/src/final_proj/final_proj/database.json')
+        self.audio = audio 
     
    # TODO 
     def get_user_answer(self):
@@ -34,27 +36,27 @@ class Game(Node):
     def trivia_mode(self, color):
         while(True):
             # get new question - ie key and question+answer content 
-            question_key, question = trivia.get_question(color)
+            question_key, question = self.trivia.get_question(color)
             # read out question to user 
-            audio.speak(question)
+            self.audio.speak(question)
             time.sleep(10.0)
             # get user answer + stop audio
             guess = self.get_user_answer() #TODO
-            audio.stop_speak()
-            correct = trivia.check_answer(color, question_key, guess)
+            self.audio.stop_speak()
+            correct = self.trivia.check_answer(color, question_key, guess)
             # if answer is correct, exit trivia mode, else repeat with new question 
             if correct: return 
     
     # game loop: if color detected -> enter trivia mode, else allow movement 
     def game_loop(self, color):
         enable_movement_msg = Bool()
-        if color == 'none':
+        if color.data == 'none':
             enable_movement_msg.data = True
             self.publisher.publish(enable_movement_msg)
         else:
             enable_movement_msg.data = False
             self.publisher.publish(enable_movement_msg)
-            self.trivia_mode(color)
+            self.trivia_mode(color.data)
 
 def main():
     rclpy.init()
@@ -62,7 +64,6 @@ def main():
     # Initialize helper modules 
     client = MinimalClientAsync()
     audio = Audio(client)
-    trivia = Trivia('/home/ubuntu/ros2_ws/src/final_proj/final_proj/database.json')
 
     # Start game
     audio.speak('Game start')
@@ -71,7 +72,7 @@ def main():
     audio.stop_speak()
     
     # Not sure about the order here ...
-    game = Game()
+    game = Game(audio)
     rclpy.spin(game)
     
     # This spins up a client node, checks if it's done, throws an exception of there's an issue
