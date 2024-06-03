@@ -29,7 +29,7 @@ class Game(Node):
         self.trivia = Trivia('/home/ubuntu/ros2_ws/src/final_proj/final_proj/database.json')
         self.audio = audio 
     
-   # TODO 
+    # TODO 
     def get_user_answer(self):
         return 1
     
@@ -54,6 +54,7 @@ class Game(Node):
             enable_movement_msg.data = True
             self.publisher.publish(enable_movement_msg)
         else:
+            print('in trivia mode')
             enable_movement_msg.data = False
             self.publisher.publish(enable_movement_msg)
             self.trivia_mode(color.data)
@@ -71,7 +72,6 @@ def main():
     time.sleep(5.0)
     audio.stop_speak()
     
-    # Not sure about the order here ...
     game = Game(audio)
     rclpy.spin(game)
     

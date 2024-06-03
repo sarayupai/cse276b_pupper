@@ -47,7 +47,6 @@ def main():
     
     # send commands to do the conga dance
     audio.speak("we are testing this")
-    # TODO: just hardcode the timer for now 
     time.sleep(7.0)
     audio.stop_speak()
     

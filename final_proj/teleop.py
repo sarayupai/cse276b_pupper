@@ -65,19 +65,19 @@ class Teleop(Node):
         self.msg = """
 --------------------
 Moving around:
-'w' to move FORWARD 
-'a' to turn LEFT
-'s' to turn BACK
-'d' to turn RIGHT
-'q' to quit
+'/' to move FORWARD 
+'7' to turn LEFT
+'8' to turn BACK
+'9' to turn RIGHT
+'00' to quit
 --------------------
         """
         self.velocityBindings = {
-                'w':(1,0,0,0), # front
-                'a':(0,0,0,1), # left 
-                'd':(0,0,0,-1), # right
-                's':(-1,0,0,0), # back
-                'q':(0,0,0,0), # stop
+                '/':(1,0,0,0), # front
+                '7':(0,0,0,1), # left 
+                '9':(0,0,0,-1), # right
+                '8':(-1,0,0,0), # back
+                '00':(0,0,0,0), # stop
             }
 
     def joy_callback(self, data):

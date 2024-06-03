@@ -46,12 +46,13 @@ class echo_camera(Node):
 		self.green_rgb_upper = np.uint8([[[75, 255, 255]]]) # 130, 255, 130
 		self.green_hsv_lower = cv2.cvtColor(self.green_rgb_lower, cv2.COLOR_BGR2HSV)
 		self.green_hsv_upper = cv2.cvtColor(self.green_rgb_upper, cv2.COLOR_BGR2HSV)
-		# self.hsv_lower=np.matrix.flatten(cv2.cvtColor(self.green_rgb_lower, cv2.COLOR_BGR2HSV))
-		# self.hsv_upper=np.matrix.flatten(cv2.cvtColor(self.green_rgb_upper, cv2.COLOR_BGR2HSV))
 		
-		# Red TODO
-		# lower - 160, 40, 40
-		# upper - 180, 255, 255
+		# Red
+		self.red_rgb_lower = np.uint8([[[160, 40, 40]]])
+		self.red_rgb_upper = np.uint8([[[180, 255, 255]]])
+		self.red_hsv_lower = cv2.cvtColor(self.red_rgb_lower, cv2.COLOR_BGR2HSV)
+		self.red_hsv_upper = cv2.cvtColor(self.red_rgb_upper, cv2.COLOR_BGR2HSV)
+		
 		
 		# Blue TODO
 		# lower - 
@@ -76,29 +77,36 @@ class echo_camera(Node):
 		# Create numpy arrays from the boundaries
 		green_lower = np.array(self.green_rgb_lower,dtype=np.uint8)
 		green_upper = np.array(self.green_rgb_upper,dtype=np.uint8)
+		red_lower = np.array(self.red_rgb_lower,dtype=np.uint8)
+		red_upper = np.array(self.red_rgb_upper,dtype=np.uint8)
 		
 		# Find all the pixels in the color range you want in the frame
 		green_mask = cv2.inRange(hsv,green_lower,green_upper)
+		red_mask = cv2.inRange(hsv,green_lower,green_upper)
 		
 		# Mask out all other colors apart from the one you want to view
-		masked_frame = cv2.bitwise_and(current_frame, current_frame, mask=green_mask)
+		masked_frame_green = cv2.bitwise_and(current_frame, current_frame, mask=green_mask)
+		masked_frame_red = cv2.bitwise_and(current_frame, current_frame, mask=red_mask)
 		
 		# Check if any pixels within mask are non-zero 
-		green_detected = np.any(green_mask > 30)
+		green_detected = np.any(green_mask > 15)
+		red_detected = np.any(green_mask > 15)
 		
-		# Publish the detection result 
+		# Publish the detection result
 		detection_msg = String()
 		if green_detected:
-	            detection_msg.data = 'green'
+                    detection_msg.data = 'green'
+		elif red_detected:
+		    detection_msg.data = 'red'
 		else:
 		    detection_msg.data = 'none'
 		self.publisher.publish(detection_msg)
 		
 		#Using the imshow function to echo display the image frame currrently being published by the OAK-D
-		cv2.imshow("color detected", np.hstack([current_frame, masked_frame]))
+		# cv2.imshow("color detected", np.hstack([current_frame, masked_frame_red]))
 
 		#This shows each image frame for 1 millisecond, try playing around with different wait values to achieve the video framerate you want!
-		cv2.waitKey(1)
+		# cv2.waitKey(1)
 		
 
 # Main function 		
