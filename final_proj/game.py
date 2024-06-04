@@ -24,7 +24,7 @@ class Game(Node):
     def __init__(self, audio):
         # initialize 
         super().__init__('game')
-        self.subscription = self.create_subscription(String, 'color_detection', self.game_loop, 10)
+        self.subscription = self.create_subscription(String, 'timer_control', self.game_loop, 10)
         self.publisher = self.create_publisher(Bool, 'enable_movement', 10)
         self.trivia = Trivia('/home/ubuntu/ros2_ws/src/final_proj/final_proj/database.json')
         self.audio = audio 
@@ -73,6 +73,7 @@ def main():
     audio.stop_speak()
     
     game = Game(audio)
+    print('now trying to spin up')
     rclpy.spin(game)
     
     # This spins up a client node, checks if it's done, throws an exception of there's an issue
