@@ -2,43 +2,51 @@
     "red": {
         "1": {
             "question": ["What is the product of 50 and 2?", "A) 100", "B) 2500", "C) 1225", "D) 49"],
-            "correct_answer": "1" 
+            "correct_answer": "1",
+            "time": "7"
         },
         "2": {
             "question": ["What is the square root of 225?", "A) 13", "B) 14", "C) 15", "D) 16"],
-            "correct_answer": "3" 
+            "correct_answer": "3",
+            "time": "6" 
         },
         "3": {
             "question": ["What is the result of adding 87 and 24?", "A) 101", "B) 111", "C) 110", "D) 90"],
-            "correct_answer": "2" 
+            "correct_answer": "2",
+            "time": "8"  
         }
     },
     "green": {
         "1": {
             "question": ["What is the name of the main protagonist in the maze runner series?", "A) Newt", "B) Minho", "C) Thomas", "D) Gally"],
-            "correct_answer": "3" 
+            "correct_answer": "3",
+            "time": "9"  
         },
         "2": {
             "question": ["Who played the character Thomas in the Maze Runner movies?", "A) Thomas Sangster", "B) Will Poulter", "C) Theo James", "D) Dylan O'Brien"],
-            "correct_answer": "4" 
+            "correct_answer": "10" 
         },
         "3": {
             "question": ["What is the name of the second book in the Maze Runner Series?", "A) The Death Cure", "B) The Scorch Trials", "C) The Kill Order", "D) The Fever Code"],
-            "correct_answer": "2" 
+            "correct_answer": "2",
+            "time": "12"  
         }
     },
     "blue": {
         "1": {
             "question": ["What is the capital city of the country that is home to the Amazon rainforest?", "A) Buenos Aires", "B) Brasilia", "C) Lima", "D) Bogota"],
-            "correct_answer": "Brasilia" 
+            "correct_answer": "Brasilia",
+            "time": "10" 
         },
         "2": {
             "question": ["Which continent is the Sahara Desert located in?", "A) Asia", "B) Africa", "C) South America", "D) Australia"],
-            "correct_answer": "2" 
+            "correct_answer": "2",
+            "time": "8"
         },
         "3": {
             "question": ["In which year did the Berlin Wall fall?", "A) 1985", "B) 1987", "C) 1989", "D) 1991"],
-            "correct_answer": "3" 
+            "correct_answer": "3",
+            "time": "7" 
         }
     }
 }
