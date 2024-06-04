@@ -28,6 +28,7 @@ class Trivia(Node):
         # Read JSON data from a file
         with open(filename, 'r') as file:
             self.database = json.load(file)
+        self.answer_mapping = {'7': '1', '9': '2', '1': '3', '3': '4', '0': 'repeat'} 
  
     ###
     # Name: get_question 
@@ -45,7 +46,7 @@ class Trivia(Node):
     # Arguments:  self (reference the current class), color (the question category), key (the id of the question), guess (the user's answer guess)
     #####
     def check_answer(self, color, key, guess):
-        return self.database[color][key]["correct_answer"] == str(guess)
+        return self.database[color][key]["correct_answer"] == guess
     
     ###
     # Name: get_time 
@@ -54,3 +55,11 @@ class Trivia(Node):
     #####
     def get_time(self, color, key):
         return self.database[color][key]["time"]
+        
+    def get_user_answer(self):
+        while(True):
+            answer = input("What is your answer?")
+            if answer[-1] in self.answer_mapping:
+                return self.answer_mapping[answer[-1]]
+            else:
+                print("Answer is invalid")

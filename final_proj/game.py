@@ -16,10 +16,10 @@ from teleop import Teleop
 # Packages to let us create nodes and spin them up 
 import rclpy
 import time
+import random 
 from rclpy.node import Node
 from std_msgs.msg import Bool 
 from std_msgs.msg import String
-
 
 class Game(Node):
     def __init__(self, audio):
@@ -31,33 +31,57 @@ class Game(Node):
         self.audio = audio 
         self.teleop = Teleop()
     
-    # TODO 
-    def get_user_answer(self):
-        return 1
     
     def trivia_mode(self, color):
         while(True):
             # get new question - ie key and question+answer content 
             question_key, question = self.trivia.get_question(color)
+            
             # read out question to user 
-            self.audio.speak(question)
-            # sleep for duration of question 
-            audio_time = self.get_time(color, question_key)
-            time.sleep(float(audio_time))
-            # get user answer + stop audio
-            guess = self.get_user_answer() #TODO
-            self.audio.stop_speak()
+   
+            while(True):
+            	self.audio.speak(question)
+            	# sleep for duration of question 
+            	audio_time = self.trivia.get_time(color, question_key)
+            	time.sleep(float(audio_time) + 5.0)
+            	# get user answer + stop audio
+            	guess = self.trivia.get_user_answer() #TODO
+            	self.audio.stop_speak()
+            	if guess != 'repeat':
+            	    break
+            
             correct = self.trivia.check_answer(color, question_key, guess)
+            
             # if answer is correct, exit trivia mode, else repeat with new question 
-            if correct: return 
+            if correct: 
+                self.audio.speak("That's correct! You may proceed through the maze")
+                self.teleop.headnod(True)
+                time.sleep(7.0)
+                self.audio.stop_speak()
+                return 
+            else:
+                self.audio.speak("That's not quite right! Let me give you another chance.")
+                self.teleop.headnod(False)
+                time.sleep(7.0)
+                self.audio.stop_speak()
+                
     
     # game loop: if color detected -> enter trivia mode, else allow movement 
     def game_loop(self):
         play = True 
+        colors = ['red', 'green', 'blue']
         while(play):
-            teleop.poll_keys() # should exit after a set interval 
+            self.audio.speak("Entering move mode")
+            time.sleep(5.0)
+            print('enter move mode')
+            self.teleop.poll_keys() # should exit after a set interval 
+            
+            self.audio.speak("Entering trivia mode")
+            time.sleep(5.0)
+            print('enter trivia mode')
             # TODO: add logic to pick a color
-            trivia_mode('red')
+            rand_color = random.randint(0,2)
+            self.trivia_mode(colors[rand_color])
 
 def main():
     rclpy.init()

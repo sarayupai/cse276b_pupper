@@ -24,7 +24,8 @@
         },
         "2": {
             "question": ["Who played the character Thomas in the Maze Runner movies?", "A) Thomas Sangster", "B) Will Poulter", "C) Theo James", "D) Dylan O'Brien"],
-            "correct_answer": "10" 
+            "correct_answer": "4", 
+            "time": "10"
         },
         "3": {
             "question": ["What is the name of the second book in the Maze Runner Series?", "A) The Death Cure", "B) The Scorch Trials", "C) The Kill Order", "D) The Fever Code"],

@@ -19,6 +19,7 @@ from sensor_msgs.msg import Joy
 from std_msgs.msg import Bool 
 import random
 import time
+import math 
 
 def quaternion_from_euler(roll, pitch, yaw):
     """
@@ -113,7 +114,7 @@ Moving around:
 
         self.pose_publisher.publish(body_pose)
 
-    def poll_keys(self, msg):
+    def poll_keys(self):
         self.settings = termios.tcgetattr(sys.stdin)
         x = 0
         y = 0
@@ -129,7 +130,7 @@ Moving around:
             print(self.msg)
             print(self.vels( self.speed, self.turn))
 
-            end_time = time.time() + 20 
+            end_time = time.time() + 5 
             while(time.time() < end_time):
                 key = self.getKey()
                 if key in self.velocityBindings.keys():
@@ -186,6 +187,90 @@ Moving around:
             self.velocity_publisher.publish(twist)
 
             termios.tcsetattr(sys.stdin, termios.TCSADRAIN, self.settings)
+            
+    def headnod(self, correct):
+        body_pose = Pose()
+        if correct:
+            #TODO: up and down head nods causing robot to shut off 
+            # reset
+            quaternion = quaternion_from_euler(0.0, 0.0, 0.0)
+            body_pose.orientation.x = quaternion[0]
+            body_pose.orientation.y = quaternion[1]
+            body_pose.orientation.z = quaternion[2]
+            body_pose.orientation.w = quaternion[3]
+
+            self.pose_publisher.publish(body_pose)
+            time.sleep(1.0)
+            
+            quaternion = quaternion_from_euler(0.0, -0.3, 0.0)
+            body_pose.orientation.x = quaternion[0]
+            body_pose.orientation.y = quaternion[1]
+            body_pose.orientation.z = quaternion[2]
+            body_pose.orientation.w = quaternion[3]
+
+            self.pose_publisher.publish(body_pose)
+            time.sleep(1.0)
+            
+            quaternion = quaternion_from_euler(0.0, 0.3, 0.0)
+            body_pose.orientation.x = quaternion[0]
+            body_pose.orientation.y = quaternion[1]
+            body_pose.orientation.z = quaternion[2]
+            body_pose.orientation.w = quaternion[3]
+
+            self.pose_publisher.publish(body_pose)
+            time.sleep(1.0)
+            
+            # reset
+            quaternion = quaternion_from_euler(0.0, 0.0, 0.0)
+            body_pose.orientation.x = quaternion[0]
+            body_pose.orientation.y = quaternion[1]
+            body_pose.orientation.z = quaternion[2]
+            body_pose.orientation.w = quaternion[3]
+
+            self.pose_publisher.publish(body_pose)
+            time.sleep(1.0)
+            
+        
+            
+        else:
+        
+            # reset
+            quaternion = quaternion_from_euler(0.0, 0.0, 0.0)
+            body_pose.orientation.x = quaternion[0]
+            body_pose.orientation.y = quaternion[1]
+            body_pose.orientation.z = quaternion[2]
+            body_pose.orientation.w = quaternion[3]
+
+            self.pose_publisher.publish(body_pose)
+            time.sleep(1.0)
+        
+            quaternion = quaternion_from_euler(0.0, 0.0, 0.3)
+            body_pose.orientation.x = quaternion[0]
+            body_pose.orientation.y = quaternion[1]
+            body_pose.orientation.z = quaternion[2]
+            body_pose.orientation.w = quaternion[3]
+
+            self.pose_publisher.publish(body_pose)
+            time.sleep(1.0)
+            
+            quaternion = quaternion_from_euler(0.0, 0.0, -0.3)
+            body_pose.orientation.x = quaternion[0]
+            body_pose.orientation.y = quaternion[1]
+            body_pose.orientation.z = quaternion[2]
+            body_pose.orientation.w = quaternion[3]
+
+            self.pose_publisher.publish(body_pose)
+            time.sleep(1.0)
+            
+            # reset
+            quaternion = quaternion_from_euler(0.0, 0.0, 0.0)
+            body_pose.orientation.x = quaternion[0]
+            body_pose.orientation.y = quaternion[1]
+            body_pose.orientation.z = quaternion[2]
+            body_pose.orientation.w = quaternion[3]
+
+            self.pose_publisher.publish(body_pose)
+            time.sleep(1.0)
         
     def getKey(self):
         tty.setraw(sys.stdin.fileno())
