@@ -41,7 +41,9 @@ class Game(Node):
             question_key, question = self.trivia.get_question(color)
             # read out question to user 
             self.audio.speak(question)
-            time.sleep(10.0) # TODO: fix this to be length of the question 
+            # sleep for duration of question 
+            audio_time = self.get_time(color, question_key)
+            time.sleep(float(audio_time))
             # get user answer + stop audio
             guess = self.get_user_answer() #TODO
             self.audio.stop_speak()
