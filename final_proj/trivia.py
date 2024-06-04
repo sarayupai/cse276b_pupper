@@ -46,3 +46,11 @@ class Trivia(Node):
     #####
     def check_answer(self, color, key, guess):
         return self.database[color][key]["correct_answer"] == str(guess)
+    
+    ###
+    # Name: get_time 
+    # Purpose: get the time, in seconds, it takes to read out a question
+    # Arguments:  self (reference the current class), color (the question category), key (the id of the question)
+    #####
+    def get_time(self, color, key):
+        return self.database[color][key]["time"]
