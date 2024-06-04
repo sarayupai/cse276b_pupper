@@ -202,7 +202,7 @@ Moving around:
             self.pose_publisher.publish(body_pose)
             time.sleep(1.0)
             
-            quaternion = quaternion_from_euler(0.0, -0.3, 0.0)
+            quaternion = quaternion_from_euler(0.0, 0.1, 0.0)
             body_pose.orientation.x = quaternion[0]
             body_pose.orientation.y = quaternion[1]
             body_pose.orientation.z = quaternion[2]
@@ -211,7 +211,7 @@ Moving around:
             self.pose_publisher.publish(body_pose)
             time.sleep(1.0)
             
-            quaternion = quaternion_from_euler(0.0, 0.3, 0.0)
+            quaternion = quaternion_from_euler(0.0, -0.1, 0.0)
             body_pose.orientation.x = quaternion[0]
             body_pose.orientation.y = quaternion[1]
             body_pose.orientation.z = quaternion[2]
@@ -229,8 +229,6 @@ Moving around:
 
             self.pose_publisher.publish(body_pose)
             time.sleep(1.0)
-            
-        
             
         else:
         
@@ -244,7 +242,7 @@ Moving around:
             self.pose_publisher.publish(body_pose)
             time.sleep(1.0)
         
-            quaternion = quaternion_from_euler(0.0, 0.0, 0.3)
+            quaternion = quaternion_from_euler(0.0, 0.0, 0.1)
             body_pose.orientation.x = quaternion[0]
             body_pose.orientation.y = quaternion[1]
             body_pose.orientation.z = quaternion[2]
@@ -253,7 +251,7 @@ Moving around:
             self.pose_publisher.publish(body_pose)
             time.sleep(1.0)
             
-            quaternion = quaternion_from_euler(0.0, 0.0, -0.3)
+            quaternion = quaternion_from_euler(0.0, 0.0, -0.1)
             body_pose.orientation.x = quaternion[0]
             body_pose.orientation.y = quaternion[1]
             body_pose.orientation.z = quaternion[2]
