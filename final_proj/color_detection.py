@@ -37,23 +37,30 @@ class echo_camera(Node):
 		# self.subscription #this is just to remove unused variable warnings
 		
 		self.publisher = self.create_publisher(String, 'timer_control', 10)
-               
+
 	def time_loop(self):
-		self.get_logger().info('hopped in the time loop')
-		detection_msg = String()
-		detection_msg.data = 'none'
-		self.publisher.publish(detection_msg)
-		time.sleep(20.0)
-		# grab rand color 
-		rand_color = random.randint(1,3)
-		if rand_color == 1:
-		    detection_msg.data = 'red'
-		elif rand_color == 2:
-		    detection_msg.data = 'green'
-		else:
-		    detection_msg.data = 'blue'
-		self.publisher.publish(detection_msg)
-		self.get_logger().info('iteration complete')	
+		while(True):
+		    self.get_logger().info('hopped in the time loop')
+		    
+		    # continually publish to move 
+		    end_time = time.time() + 20 # 20 sec for now
+		    detection_msg = String()
+		    detection_msg.data = 'none'
+		    while time.time() < end_time:
+		        self.publisher.publish(detection_msg)
+		 
+		    # grab rand color
+		    rand_color = random.randint(1,3)
+		    self.get_logger().info('rand color is: ')
+		    print(rand_color)
+		    if rand_color == 1:
+		        detection_msg.data = 'red'
+		    elif rand_color == 2:
+		        detection_msg.data = 'green'
+		    else:
+		        detection_msg.data = 'blue'
+		    self.publisher.publish(detection_msg)
+		    self.get_logger().info('iteration complete')	
 
 # Main function 		
 def main():
@@ -63,10 +70,7 @@ def main():
 	#Create an object of the echo_camera class
 	echo_obj = echo_camera()
 	echo_obj.time_loop()
-	
-	#Keep going till termination
-	rclpy.spin(echo_obj)
-	
+
 	#Destroy node when done 
 	echo_obj.destroy_node()
 	
