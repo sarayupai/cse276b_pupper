@@ -18,6 +18,7 @@ from rclpy.node import Node
 from sensor_msgs.msg import Joy
 from std_msgs.msg import Bool 
 import random
+import time
 
 def quaternion_from_euler(roll, pitch, yaw):
     """
@@ -49,7 +50,7 @@ class Teleop(Node):
         self.pose_publisher = self.create_publisher(Pose, 'body_pose', 1)
         
         self.joy_subscriber = self.create_subscription(Joy, 'joy', self.joy_callback, 1)
-        self.subscription = self.create_subscription(Bool, 'enable_movement', self.poll_keys, 10)
+        #self.subscription = self.create_subscription(Bool, 'enable_movement', self.poll_keys, 10)
 
         self.declare_parameter("gait/swing_height", 0)
         self.declare_parameter("gait/nominal_height", 0)
@@ -114,7 +115,6 @@ Moving around:
 
     def poll_keys(self, msg):
         self.settings = termios.tcgetattr(sys.stdin)
-        # TODO these need to be outside the loop
         x = 0
         y = 0
         z = 0
@@ -129,7 +129,8 @@ Moving around:
             print(self.msg)
             print(self.vels( self.speed, self.turn))
 
-            if msg.data:
+            end_time = time.time() + 20 
+            while(time.time() < end_time):
                 key = self.getKey()
                 if key in self.velocityBindings.keys():
                     x = self.velocityBindings[key][0]
@@ -161,7 +162,7 @@ Moving around:
                     twist.angular.z = 0.0
                     self.velocity_publisher.publish(twist)
             # not sure if this is needed
-            else:
+            '''else:
                 twist = Twist()
                 twist.linear.x = 0.0
                 twist.linear.y = 0.0
@@ -169,7 +170,7 @@ Moving around:
                 twist.angular.x = 0.0
                 twist.angular.y = 0.0
                 twist.angular.z = 0.0
-                self.velocity_publisher.publish(twist)
+                self.velocity_publisher.publish(twist)'''
 
         except Exception as e:
             print(e)

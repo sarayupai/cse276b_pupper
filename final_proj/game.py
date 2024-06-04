@@ -11,6 +11,7 @@
 from audio import Audio 
 from trivia import Trivia 
 from client_go_pupper import MinimalClientAsync
+from teleop import Teleop 
 
 # Packages to let us create nodes and spin them up 
 import rclpy
@@ -24,10 +25,11 @@ class Game(Node):
     def __init__(self, audio):
         # initialize 
         super().__init__('game')
-        self.subscription = self.create_subscription(String, 'timer_control', self.game_loop, 10)
-        self.publisher = self.create_publisher(Bool, 'enable_movement', 10)
+        #self.subscription = self.create_subscription(String, 'timer_control', self.game_loop, 10)
+        #self.publisher = self.create_publisher(Bool, 'enable_movement', 10)
         self.trivia = Trivia('/home/ubuntu/ros2_ws/src/final_proj/final_proj/database.json')
         self.audio = audio 
+        self.teleop = Teleop()
     
     # TODO 
     def get_user_answer(self):
@@ -48,16 +50,12 @@ class Game(Node):
             if correct: return 
     
     # game loop: if color detected -> enter trivia mode, else allow movement 
-    def game_loop(self, color):
-        enable_movement_msg = Bool()
-        if color.data == 'none':
-            enable_movement_msg.data = True
-            self.publisher.publish(enable_movement_msg)
-        else:
-            print('in trivia mode')
-            enable_movement_msg.data = False
-            self.publisher.publish(enable_movement_msg)
-            self.trivia_mode(color.data)
+    def game_loop(self):
+        play = True 
+        while(play):
+            teleop.poll_keys() # should exit after a set interval 
+            # TODO: add logic to pick a color
+            trivia_mode('red')
 
 def main():
     rclpy.init()
@@ -74,7 +72,8 @@ def main():
     
     game = Game(audio)
     print('now trying to spin up')
-    rclpy.spin(game)
+    game.game_loop()
+    #rclpy.spin(game)
     
     # This spins up a client node, checks if it's done, throws an exception of there's an issue
     while rclpy.ok():
@@ -95,7 +94,7 @@ def main():
     # Destroy node and shut down
     # trivia.destroy_node()
     # audio.destroy_node()
-    game.destroy_node()
+    #game.destroy_node()
     client.destroy_node()
     rclpy.shutdown()	
 
