@@ -30,16 +30,24 @@ class Game(Node):
         self.trivia = Trivia('/home/ubuntu/ros2_ws/src/final_proj/final_proj/database.json')
         self.audio = audio 
         self.teleop = Teleop()
-    
+
+    def start_game(self):
+        self.audio.speak('Game start')
+        print('passed initial audio')
+        self.audio.stop_speak()
+
+    def end_game(self):
+        score = self.trivia.get_score()
+        self.audio.speak(f'Game end. Your score is {score}')
+        self.audio.stop_speak()
     
     def trivia_mode(self, color):
         while(True):
             # get new question - ie key and question+answer content 
             question_key, question = self.trivia.get_question(color)
             
-            # read out question to user 
-   
             while(True):
+                # read out question to user 
             	self.audio.speak(question)
             	# get user answer + stop audio
             	guess = self.trivia.get_user_answer() #TODO
@@ -85,15 +93,17 @@ def main():
     client = MinimalClientAsync()
     audio = Audio(client)
 
-    # Start game
-    audio.speak('Game start')
-    print('passed initial audio')
-    time.sleep(5.0)
-    audio.stop_speak()
-    
     game = Game(audio)
-    print('now trying to spin up')
+    #print('now trying to spin up')
+    
+    # Start game 
+    game.start_game()
+
+    # TODO: find a way tp quit the game from the game loop 
     game.game_loop()
+
+    # End Game 
+    game.end_game()
     #rclpy.spin(game)
     
     # This spins up a client node, checks if it's done, throws an exception of there's an issue
