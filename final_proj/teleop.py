@@ -287,7 +287,12 @@ Moving around:
             self.velocity_publisher.publish(twist)
 
             termios.tcsetattr(sys.stdin, termios.TCSADRAIN, self.settings)
-            
+
+    # TODO: implement 
+    def headnod(self, correct): 
+        return
+    
+    '''        
     def headnod(self, correct):
         body_pose = Pose()
         if correct:
@@ -372,7 +377,7 @@ Moving around:
 
             self.pose_publisher.publish(body_pose)
             time.sleep(1.0)
-        
+       ''' 
     def getKey(self):
         tty.setraw(sys.stdin.fileno())
         rlist, _, _ = select.select([sys.stdin], [], [], 0.1)
