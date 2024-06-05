@@ -158,27 +158,27 @@ class Teleop(Node):
         self.msg = """
 --------------------
 Moving around:
-'w' to move FORWARD 
-'a' to turn LEFT
-'s' to turn BACK
-'d' to turn RIGHT
-'q' to quit
+'↑' to move FORWARD 
+'←' to turn LEFT
+'↓' to turn BACK 
+'→' to turn RIGHT
+'X' to quit
 --------------------
         """
         self.velocityBindings = {
-                'w':(1,0,0,0), # front
-                'a':(0,0,0,1), # left 
-                'd':(0,0,0,-1), # right
-                's':(-1,0,0,0), # back
-                'q':(0,0,0,0), # stop
+                '8':(1,0,0,0), # front
+                '4':(0,0,0,1), # left 
+                '6':(0,0,0,-1), # right
+                '2':(-1,0,0,0), # back
+                '5':(0,0,0,0), # stop
             }
             
         self.image = {
-                'w': newF, # front
-                'a': newL, # left 
-                'd': newR, # right
-                's': newF, # back
-                'q': newF, # stop
+                '8': newF, # front
+                '4': newL, # left 
+                '6': newR, # right
+                '2': newF, # back
+                '5': newF, # stop
         }
 
     def joy_callback(self, data):
@@ -249,7 +249,7 @@ Moving around:
                         self.velocity_publisher.publish(twist)
                         disp.show_image(self.image[key])
                     cmd_attempts += 1
-
+                '''
                 else:
                     cmd_attempts = 0
                     #if (key == '\x03'):
@@ -261,7 +261,8 @@ Moving around:
                     twist.angular.y = 0.0
                     twist.angular.z = 0.0
                     self.velocity_publisher.publish(twist)
-                    disp.show_image(self.image['q'])
+                    disp.show_image(self.image['5'])
+                '''
             # not sure if this is needed
             '''else:
                 twist = Twist()
@@ -288,18 +289,14 @@ Moving around:
 
             termios.tcsetattr(sys.stdin, termios.TCSADRAIN, self.settings)
 
-    # TODO: implement 
-    def headnod(self, correct): 
-        return
-    
-    '''        
+    # TODO: implement         
     def headnod(self, correct):
         body_pose = Pose()
         if correct:
             #TODO: up and down head nods causing robot to shut off 
             # reset
             disp.show_image(newC)
-            
+            '''
             quaternion = quaternion_from_euler(0.0, 0.0, 0.0)
             body_pose.orientation.x = quaternion[0]
             body_pose.orientation.y = quaternion[1]
@@ -336,10 +333,10 @@ Moving around:
 
             self.pose_publisher.publish(body_pose)
             time.sleep(1.0)
-            
+            '''
         else:
             disp.show_image(newI)
-        
+            '''
             # reset
             quaternion = quaternion_from_euler(0.0, 0.0, 0.0)
             body_pose.orientation.x = quaternion[0]
@@ -377,7 +374,7 @@ Moving around:
 
             self.pose_publisher.publish(body_pose)
             time.sleep(1.0)
-       ''' 
+            ''' 
     def getKey(self):
         tty.setraw(sys.stdin.fileno())
         rlist, _, _ = select.select([sys.stdin], [], [], 0.1)

@@ -11,7 +11,8 @@
 from audio import Audio 
 from trivia import Trivia 
 from client_go_pupper import MinimalClientAsync
-from teleop import Teleop 
+from teleop import Teleop
+from nod import Nod
 
 # Packages to let us create nodes and spin them up 
 import rclpy
@@ -30,6 +31,7 @@ class Game(Node):
         self.trivia = Trivia('/home/ubuntu/ros2_ws/src/final_proj/final_proj/database.json')
         self.audio = audio 
         self.teleop = Teleop()
+        self.nod = Nod()
 
     def start_game(self):
         self.audio.speak('Game start')
@@ -50,7 +52,7 @@ class Game(Node):
                 # read out question to user 
             	self.audio.speak(question)
             	# get user answer + stop audio
-            	guess = self.trivia.get_user_answer() #TODO
+            	guess = self.trivia.get_user_answer()
             	self.audio.stop_speak()
             	if guess != 'repeat':
             	    break
@@ -61,11 +63,19 @@ class Game(Node):
             if correct: 
                 self.audio.speak("That's correct! You may proceed through the maze")
                 self.teleop.headnod(True)
+                # self.nod.look_up()
+                # self.nod.reset()
+                # self.nod.look_down()
+                # self.nod.reset()
                 self.audio.stop_speak()
                 return 
             else:
                 self.audio.speak("That's not quite right! Let me give you another chance.")
                 self.teleop.headnod(False)
+                # self.nod.look_left()
+                # self.nod.reset()
+                # self.nod.look_right()
+                # self.nod.reset()
                 self.audio.stop_speak()
                 
     
@@ -75,14 +85,13 @@ class Game(Node):
         colors = ['red', 'green', 'blue']
         while(play):
             self.audio.speak("Entering move mode")
-            time.sleep(5.0)
+            # time.sleep(5.0)
             print('enter move mode')
             self.teleop.poll_keys() # should exit after a set interval 
             
             self.audio.speak("Entering trivia mode")
-            time.sleep(5.0)
+            # time.sleep(5.0)
             print('enter trivia mode')
-            # TODO: add logic to pick a color
             rand_color = random.randint(0,2)
             self.trivia_mode(colors[rand_color])
 

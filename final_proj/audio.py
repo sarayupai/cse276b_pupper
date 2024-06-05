@@ -35,7 +35,7 @@ class Audio(Node):
         self.client.send_audio_request('/home/ubuntu/ros2_ws/src/final_proj/final_proj/' + filename)
         # sleep for duration of question 
         audio = MP3("speech.mp3")
-        time.sleep(audio.info.length)
+        time.sleep(audio.info.length + 3.0)
      
     def stop_speak(self):
     	self.client.stop_audio_request()
