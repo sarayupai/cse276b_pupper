@@ -20,6 +20,97 @@ from std_msgs.msg import Bool
 import random
 import time
 import math 
+from MangDang.mini_pupper.display import Display, BehaviorState
+from resizeimage import resizeimage  # library for image resizing
+from PIL import Image, ImageDraw, ImageFont # library for image manip.
+
+MAX_WIDTH = 320   # max width of the LCD display
+
+# Get access to the display so we can display things
+disp = Display()
+
+# Open right img
+imgLocRight = "/home/ubuntu/ros2_ws/src/final_proj/final_proj/img/right.jpg"
+imgFileRight = Image.open(imgLocRight)
+
+'''if (imgFileRight.format == 'PNG'):
+    if (imgFileRight.mode != 'RGBA'):
+        imgOldRight = imgFileRight.convert("RGBA")
+        imgFileRight = Image.new('RGBA', imgOldRight.size, (255, 255, 255))'''
+
+# Open left img
+imgLocLeft = "/home/ubuntu/ros2_ws/src/final_proj/final_proj/img/left.jpg"
+imgFileLeft = Image.open(imgLocLeft)
+
+'''if (imgFileLeft.format == 'PNG'):
+    if (imgFileLeft.mode != 'RGBA'):
+        imgOldLeft = imgFileLeft.convert("RGBA")
+        imgFileLeft = Image.new('RGBA', imgOldLeft.size, (255, 255, 255))'''
+		
+# Open straight img
+imgLocFront = "/home/ubuntu/ros2_ws/src/final_proj/final_proj/img/straight.jpg"
+imgFileFront = Image.open(imgLocFront)
+
+'''if (imgFileFront.format == 'PNG'):
+    if (imgFileFront.mode != 'RGBA'):
+        imgOldFront = imgFileFront.convert("RGBA")
+        imgFileFront = Image.new('RGBA', imgOldFront.size, (255, 255, 255))  ''' 
+        
+# Open right img
+imgLocRight = "/home/ubuntu/ros2_ws/src/final_proj/final_proj/img/right.jpg"
+imgFileRight = Image.open(imgLocRight)
+
+'''if (imgFileRight.format == 'PNG'):
+    if (imgFileRight.mode != 'RGBA'):
+        imgOldRight = imgFileRight.convert("RGBA")
+        imgFileRight = Image.new('RGBA', imgOldRight.size, (255, 255, 255))'''
+        
+# Open correct img
+imgLocCorrect = "/home/ubuntu/ros2_ws/src/final_proj/final_proj/img/correct-face.jpg"
+imgFileCorrect = Image.open(imgLocCorrect)
+
+'''if (imgFileCorrect.format == 'PNG'):
+    if (imgFileCorrect.mode != 'RGBA'):
+        imgOldCorrect = imgFileCorrect.convert("RGBA")
+        imgFileCorrect = Image.new('RGBA', imgOldCorrect.size, (255, 255, 255))  '''
+        
+# Open incorrect img
+imgLocIncorrect = "/home/ubuntu/ros2_ws/src/final_proj/final_proj/img/incorrect-face.jpg"
+imgFileIncorrect = Image.open(imgLocIncorrect)
+
+'''if (imgFileIncorrect.format == 'PNG'):
+    if (imgFileIncorrect.mode != 'RGBA'):
+        imgOldIncorrect = imgFileIncorrect.convert("RGBA")
+        imgFileIncorrect = Image.new('RGBA', imgOldIncorrect.size, (255, 255, 255))  '''  
+        
+# We likely also need to resize to the pupper LCD display size (320x240).
+width_size = (MAX_WIDTH / float(imgFileRight.size[0]))
+imgFileRight = resizeimage.resize_width(imgFileRight, MAX_WIDTH)
+
+width_size = (MAX_WIDTH / float(imgFileLeft.size[0]))
+imgFileLeft = resizeimage.resize_width(imgFileLeft, MAX_WIDTH)
+
+width_size = (MAX_WIDTH / float(imgFileFront.size[0]))
+imgFileFront = resizeimage.resize_width(imgFileFront, MAX_WIDTH)
+
+width_size = (MAX_WIDTH / float(imgFileIncorrect.size[0]))
+imgFileIncorrect = resizeimage.resize_width(imgFileIncorrect, MAX_WIDTH)
+
+width_size = (MAX_WIDTH / float(imgFileCorrect.size[0]))
+imgFileCorrect = resizeimage.resize_width(imgFileCorrect, MAX_WIDTH)
+ 
+newR = "/home/ubuntu/ros2_ws/src/final_proj/final_proj/img/right1.png"
+newL = "/home/ubuntu/ros2_ws/src/final_proj/final_proj/img/left1.png"
+newF = "/home/ubuntu/ros2_ws/src/final_proj/final_proj/img/straight1.png"
+newI = "/home/ubuntu/ros2_ws/src/final_proj/final_proj/img/incorrect1.png"
+newC = "/home/ubuntu/ros2_ws/src/final_proj/final_proj/img/correct1.png"
+
+# now output it (super inefficient, but it is what it is)
+imgFileRight.save(newR, imgFileRight.format)
+imgFileLeft.save(newL, imgFileLeft.format)
+imgFileFront.save(newF, imgFileFront.format)
+imgFileCorrect.save(newC, imgFileCorrect.format)
+imgFileIncorrect.save(newI, imgFileIncorrect.format)
 
 def quaternion_from_euler(roll, pitch, yaw):
     """
@@ -81,6 +172,14 @@ Moving around:
                 's':(-1,0,0,0), # back
                 'q':(0,0,0,0), # stop
             }
+            
+        self.image = {
+                'w': newF, # front
+                'a': newL, # left 
+                'd': newR, # right
+                's': newF, # back
+                'q': newF, # stop
+        }
 
     def joy_callback(self, data):
         twist = Twist()
@@ -130,7 +229,7 @@ Moving around:
             print(self.msg)
             print(self.vels( self.speed, self.turn))
 
-            end_time = time.time() + 5 
+            end_time = time.time() + 10  
             while(time.time() < end_time):
                 key = self.getKey()
                 if key in self.velocityBindings.keys():
@@ -148,7 +247,7 @@ Moving around:
                         twist.angular.y = 0.0
                         twist.angular.z = th * self.turn
                         self.velocity_publisher.publish(twist)
-
+                        disp.show_image(self.image[key])
                     cmd_attempts += 1
 
                 else:
@@ -162,6 +261,7 @@ Moving around:
                     twist.angular.y = 0.0
                     twist.angular.z = 0.0
                     self.velocity_publisher.publish(twist)
+                    disp.show_image(self.image['q'])
             # not sure if this is needed
             '''else:
                 twist = Twist()
@@ -193,6 +293,8 @@ Moving around:
         if correct:
             #TODO: up and down head nods causing robot to shut off 
             # reset
+            disp.show_image(newC)
+            
             quaternion = quaternion_from_euler(0.0, 0.0, 0.0)
             body_pose.orientation.x = quaternion[0]
             body_pose.orientation.y = quaternion[1]
@@ -231,6 +333,7 @@ Moving around:
             time.sleep(1.0)
             
         else:
+            disp.show_image(newI)
         
             # reset
             quaternion = quaternion_from_euler(0.0, 0.0, 0.0)

@@ -41,9 +41,6 @@ class Game(Node):
    
             while(True):
             	self.audio.speak(question)
-            	# sleep for duration of question 
-            	audio_time = self.trivia.get_time(color, question_key)
-            	time.sleep(float(audio_time) + 5.0)
             	# get user answer + stop audio
             	guess = self.trivia.get_user_answer() #TODO
             	self.audio.stop_speak()
@@ -56,13 +53,11 @@ class Game(Node):
             if correct: 
                 self.audio.speak("That's correct! You may proceed through the maze")
                 self.teleop.headnod(True)
-                time.sleep(7.0)
                 self.audio.stop_speak()
                 return 
             else:
                 self.audio.speak("That's not quite right! Let me give you another chance.")
                 self.teleop.headnod(False)
-                time.sleep(7.0)
                 self.audio.stop_speak()
                 
     

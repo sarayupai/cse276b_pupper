@@ -16,6 +16,7 @@ import rclpy
 import os
 import time
 from rclpy.node import Node
+from mutagen.mp3 import MP3
 
 class Audio(Node):
 
@@ -32,6 +33,9 @@ class Audio(Node):
         tts.save(filename)
         # Play the speech 
         self.client.send_audio_request('/home/ubuntu/ros2_ws/src/final_proj/final_proj/' + filename)
+        # sleep for duration of question 
+        audio = MP3("speech.mp3")
+        time.sleep(audio.info.length)
      
     def stop_speak(self):
     	self.client.stop_audio_request()
