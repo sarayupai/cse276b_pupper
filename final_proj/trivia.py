@@ -61,6 +61,11 @@ class Trivia(Node):
     def get_time(self, color, key):
         return self.database[color][key]["time"]
         
+    ###
+    # Name: get_user_answer
+    # Purpose: get the user answer from the termial 
+    # Arguments:  self (reference the current class) 
+    #####
     def get_user_answer(self):
         while(True):
             answer = input("What is your answer?")

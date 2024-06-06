@@ -62,34 +62,27 @@ class Game(Node):
             if correct: 
                 self.audio.speak("That's correct! You may proceed through the maze")
                 self.teleop.headnod(True)
-                # self.nod.look_up()
-                # self.nod.reset()
-                # self.nod.look_down()
-                # self.nod.reset()
                 self.audio.stop_speak()
                 return 
             else:
                 self.audio.speak("That's not quite right! Let me give you another chance.")
                 self.teleop.headnod(False)
-                # self.nod.look_left()
-                # self.nod.reset()
-                # self.nod.look_right()
-                # self.nod.reset()
                 self.audio.stop_speak()
                 
     
-    # game loop: if color detected -> enter trivia mode, else allow movement 
+    # game loop: cycle b/t movement mode -> trivia mode (quit if user selects quit key in movement)
     def game_loop(self, level):
         play = True 
         colors = ['red', 'green', 'blue']
         while(play):
             self.audio.speak("Entering move mode")
             print('enter move mode')
-            self.teleop.poll_keys(level) # should exit after a set interval 
-            
+            status = self.teleop.poll_keys(level) # should exit move mode after a set interval 
+            if status = 'quit':
+                return 
             self.audio.speak("Entering trivia mode")
             print('enter trivia mode')
-            rand_color = random.randint(0,2)
+            rand_color = random.randint(0,2) # Modify this logic?
             self.trivia_mode(colors[rand_color])
 
 def main(level):
@@ -105,7 +98,6 @@ def main(level):
     # Start game 
     game.start_game()
 
-    # TODO: find a way tp quit the game from the game loop 
     game.game_loop(level)
 
     # End Game 
@@ -135,11 +127,15 @@ def main(level):
 if __name__ == '__main__':
     # Ensure the correct number of arguments are provided
     if len(sys.argv) != 2:
-        print(f"Usage: {sys.argv[0]} <level> ")
+        print(f"Usage: {sys.argv[0]} <level#> ")
         sys.exit(1)
     
     # Extract the arguments from sys.argv
+    levels = ['level1, level2']
     level = sys.argv[1]
+    if level not in levels:
+        print("Please select a valid level")
+        sys.exit(1)
     
     # Call the main function with the level selected 
     main(level)

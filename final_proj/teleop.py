@@ -53,7 +53,8 @@ imgFileCorrect = Image.open(imgLocCorrect)
 imgLocIncorrect = "/home/ubuntu/ros2_ws/src/final_proj/final_proj/img/incorrect-face.jpg"
 imgFileIncorrect = Image.open(imgLocIncorrect)
 
-# We likely also need to resize to the pupper LCD display size (320x240).
+# We likely also need to resize to the pupper LCD display size (320x240). 
+# TODO: may need to resize to top 2/3 of screen bc of glitching 
 width_size = (MAX_WIDTH / float(imgFileRight.size[0]))
 imgFileRight = resizeimage.resize_width(imgFileRight, MAX_WIDTH)
 
@@ -197,8 +198,13 @@ Moving around:
         try:
             print(self.msg)
             print(self.vels( self.speed, self.turn))
-
-            end_time = time.time() + 10  
+            
+            # TODO: add more advanced leveling, ideas: increase speeds when question is right?
+            if level = 'level1':
+                interval = 20
+            elif level = 'level2':
+                interval = 10
+            end_time = time.time() + interval  
             while(time.time() < end_time):
                 key = self.getKey()
                 if key in self.velocityBindings.keys():
@@ -216,8 +222,6 @@ Moving around:
                     twist.angular.z = th * self.turn
                     self.velocity_publisher.publish(twist)
                     disp.show_image(self.image[key])
-                elif key == '00':
-                    return 'quit'
                 else:
                     twist = Twist()
                     twist.linear.x = 0.0
@@ -228,6 +232,8 @@ Moving around:
                     twist.angular.z = 0.0
                     self.velocity_publisher.publish(twist)
                     disp.show_image(self.image['5'])
+                    if key == '00':
+                        return 'quit'
 
         except Exception as e:
             print(e)
