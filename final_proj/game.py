@@ -12,13 +12,14 @@ from audio import Audio
 from trivia import Trivia 
 from client_go_pupper import MinimalClientAsync
 from teleop import Teleop
-from nod import Nod
+import sys 
 
 # Packages to let us create nodes and spin them up 
 import rclpy
 import time
 import random 
 from rclpy.node import Node
+
 from std_msgs.msg import Bool 
 from std_msgs.msg import String
 
@@ -26,8 +27,6 @@ class Game(Node):
     def __init__(self, audio):
         # initialize 
         super().__init__('game')
-        #self.subscription = self.create_subscription(String, 'timer_control', self.game_loop, 10)
-        #self.publisher = self.create_publisher(Bool, 'enable_movement', 10)
         self.trivia = Trivia('/home/ubuntu/ros2_ws/src/final_proj/final_proj/database.json')
         self.audio = audio 
         self.teleop = Teleop()
@@ -80,22 +79,20 @@ class Game(Node):
                 
     
     # game loop: if color detected -> enter trivia mode, else allow movement 
-    def game_loop(self):
+    def game_loop(self, level):
         play = True 
         colors = ['red', 'green', 'blue']
         while(play):
             self.audio.speak("Entering move mode")
-            # time.sleep(5.0)
             print('enter move mode')
-            self.teleop.poll_keys() # should exit after a set interval 
+            self.teleop.poll_keys(level) # should exit after a set interval 
             
             self.audio.speak("Entering trivia mode")
-            # time.sleep(5.0)
             print('enter trivia mode')
             rand_color = random.randint(0,2)
             self.trivia_mode(colors[rand_color])
 
-def main():
+def main(level):
     rclpy.init()
 
     # Initialize helper modules 
@@ -109,11 +106,10 @@ def main():
     game.start_game()
 
     # TODO: find a way tp quit the game from the game loop 
-    game.game_loop()
+    game.game_loop(level)
 
     # End Game 
     game.end_game()
-    #rclpy.spin(game)
     
     # This spins up a client node, checks if it's done, throws an exception of there's an issue
     while rclpy.ok():
@@ -132,12 +128,18 @@ def main():
             break
 
     # Destroy node and shut down
-    # trivia.destroy_node()
-    # audio.destroy_node()
-    #game.destroy_node()
     client.destroy_node()
     rclpy.shutdown()	
 
 
 if __name__ == '__main__':
-    main()
+    # Ensure the correct number of arguments are provided
+    if len(sys.argv) != 2:
+        print(f"Usage: {sys.argv[0]} <level> ")
+        sys.exit(1)
+    
+    # Extract the arguments from sys.argv
+    level = sys.argv[1]
+    
+    # Call the main function with the level selected 
+    main(level)

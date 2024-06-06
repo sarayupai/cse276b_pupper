@@ -33,56 +33,26 @@ disp = Display()
 imgLocRight = "/home/ubuntu/ros2_ws/src/final_proj/final_proj/img/right.jpg"
 imgFileRight = Image.open(imgLocRight)
 
-'''if (imgFileRight.format == 'PNG'):
-    if (imgFileRight.mode != 'RGBA'):
-        imgOldRight = imgFileRight.convert("RGBA")
-        imgFileRight = Image.new('RGBA', imgOldRight.size, (255, 255, 255))'''
-
 # Open left img
 imgLocLeft = "/home/ubuntu/ros2_ws/src/final_proj/final_proj/img/left.jpg"
 imgFileLeft = Image.open(imgLocLeft)
-
-'''if (imgFileLeft.format == 'PNG'):
-    if (imgFileLeft.mode != 'RGBA'):
-        imgOldLeft = imgFileLeft.convert("RGBA")
-        imgFileLeft = Image.new('RGBA', imgOldLeft.size, (255, 255, 255))'''
 		
 # Open straight img
 imgLocFront = "/home/ubuntu/ros2_ws/src/final_proj/final_proj/img/straight.jpg"
 imgFileFront = Image.open(imgLocFront)
-
-'''if (imgFileFront.format == 'PNG'):
-    if (imgFileFront.mode != 'RGBA'):
-        imgOldFront = imgFileFront.convert("RGBA")
-        imgFileFront = Image.new('RGBA', imgOldFront.size, (255, 255, 255))  ''' 
         
 # Open right img
 imgLocRight = "/home/ubuntu/ros2_ws/src/final_proj/final_proj/img/right.jpg"
 imgFileRight = Image.open(imgLocRight)
-
-'''if (imgFileRight.format == 'PNG'):
-    if (imgFileRight.mode != 'RGBA'):
-        imgOldRight = imgFileRight.convert("RGBA")
-        imgFileRight = Image.new('RGBA', imgOldRight.size, (255, 255, 255))'''
         
 # Open correct img
 imgLocCorrect = "/home/ubuntu/ros2_ws/src/final_proj/final_proj/img/correct-face.jpg"
 imgFileCorrect = Image.open(imgLocCorrect)
-
-'''if (imgFileCorrect.format == 'PNG'):
-    if (imgFileCorrect.mode != 'RGBA'):
-        imgOldCorrect = imgFileCorrect.convert("RGBA")
-        imgFileCorrect = Image.new('RGBA', imgOldCorrect.size, (255, 255, 255))  '''
         
 # Open incorrect img
 imgLocIncorrect = "/home/ubuntu/ros2_ws/src/final_proj/final_proj/img/incorrect-face.jpg"
 imgFileIncorrect = Image.open(imgLocIncorrect)
 
-'''if (imgFileIncorrect.format == 'PNG'):
-    if (imgFileIncorrect.mode != 'RGBA'):
-        imgOldIncorrect = imgFileIncorrect.convert("RGBA")
-        imgFileIncorrect = Image.new('RGBA', imgOldIncorrect.size, (255, 255, 255))  '''  
-        
 # We likely also need to resize to the pupper LCD display size (320x240).
 width_size = (MAX_WIDTH / float(imgFileRight.size[0]))
 imgFileRight = resizeimage.resize_width(imgFileRight, MAX_WIDTH)
@@ -213,7 +183,7 @@ Moving around:
 
         self.pose_publisher.publish(body_pose)
 
-    def poll_keys(self):
+    def poll_keys(self, level):
         self.settings = termios.tcgetattr(sys.stdin)
         x = 0
         y = 0
@@ -223,7 +193,6 @@ Moving around:
         pitch = 0
         yaw = 0
         status = 0
-        cmd_attempts = 0
 
         try:
             print(self.msg)
@@ -238,21 +207,18 @@ Moving around:
                     z = self.velocityBindings[key][2]
                     th = self.velocityBindings[key][3]
                     
-                    if cmd_attempts > 1:
-                        twist = Twist()
-                        twist.linear.x = x *self.speed
-                        twist.linear.y = y * self.speed
-                        twist.linear.z = z * self.speed
-                        twist.angular.x = 0.0
-                        twist.angular.y = 0.0
-                        twist.angular.z = th * self.turn
-                        self.velocity_publisher.publish(twist)
-                        disp.show_image(self.image[key])
-                    cmd_attempts += 1
-                '''
+                    twist = Twist()
+                    twist.linear.x = x *self.speed
+                    twist.linear.y = y * self.speed
+                    twist.linear.z = z * self.speed
+                    twist.angular.x = 0.0
+                    twist.angular.y = 0.0
+                    twist.angular.z = th * self.turn
+                    self.velocity_publisher.publish(twist)
+                    disp.show_image(self.image[key])
+                elif key == '00':
+                    return 'quit'
                 else:
-                    cmd_attempts = 0
-                    #if (key == '\x03'):
                     twist = Twist()
                     twist.linear.x = 0.0
                     twist.linear.y = 0.0
@@ -262,17 +228,6 @@ Moving around:
                     twist.angular.z = 0.0
                     self.velocity_publisher.publish(twist)
                     disp.show_image(self.image['5'])
-                '''
-            # not sure if this is needed
-            '''else:
-                twist = Twist()
-                twist.linear.x = 0.0
-                twist.linear.y = 0.0
-                twist.linear.z = 0.0
-                twist.angular.x = 0.0
-                twist.angular.y = 0.0
-                twist.angular.z = 0.0
-                self.velocity_publisher.publish(twist)'''
 
         except Exception as e:
             print(e)
@@ -288,6 +243,7 @@ Moving around:
             self.velocity_publisher.publish(twist)
 
             termios.tcsetattr(sys.stdin, termios.TCSADRAIN, self.settings)
+            return 'continue'
 
     # TODO: implement         
     def headnod(self, correct):
