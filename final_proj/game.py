@@ -38,8 +38,8 @@ class Game(Node):
         self.audio.stop_speak()
 
     def end_game(self):
-        score = self.trivia.get_score()
-        self.audio.speak(f'Game end. Your score is {score}')
+        num_correct, num_questions = self.trivia.get_score()
+        self.audio.speak(f'Game end. You answered {num_correct} out of {num_questions} questions correctly')
         self.audio.stop_speak()
         
     def trivia_ques(self, question, color, question_key): 
@@ -69,8 +69,9 @@ class Game(Node):
             self.audio.stop_speak()
 
     def trivia_mode(self, color, level):
+        self.teleop.category(color)
         while(True):
-            # get new question - ie key and question+answer content 
+            # get new question - ie key and question+answer content
             question_key, question = self.trivia.get_question(color)
             correct = self.trivia_ques(question, color,  question_key)
             
@@ -94,16 +95,19 @@ class Game(Node):
     def game_loop(self, level):
         play = True 
         colors = ['red', 'green', 'blue']
+        idx = 0
         while(play):
-            self.audio.speak("Entering move mode")
             print('enter move mode')
+            self.audio.speak("Entering move mode")
             status = self.teleop.poll_keys(level) # should exit move mode after a set interval 
+            print(status)
             if status == 'quit':
-                return 
-            self.audio.speak("Entering trivia mode")
+                break 
             print('enter trivia mode')
-            rand_color = random.randint(0,2) # Modify this logic?
-            self.trivia_mode(colors[rand_color], level)
+            self.audio.speak("Entering trivia mode")
+            self.trivia_mode(colors[idx], level)
+            idx+=1
+            if idx == 3: idx=0
 
 def main(level):
     rclpy.init()

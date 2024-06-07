@@ -29,6 +29,18 @@ MAX_WIDTH = 320   # max width of the LCD display
 # Get access to the display so we can display things
 disp = Display()
 
+# Open math img 
+imgLocMath = "/home/ubuntu/ros2_ws/src/final_proj/final_proj/img/right.jpg"
+imgFileMath = Image.open(imgLocMath)
+
+# Open world img 
+imgLocWorld = "/home/ubuntu/ros2_ws/src/final_proj/final_proj/img/right.jpg"
+imgFileWorld = Image.open(imgLocWorld)
+
+# Open maze runner category 
+imgLocMaze = "/home/ubuntu/ros2_ws/src/final_proj/final_proj/img/right.jpg"
+imgFileMaze = Image.open(imgLocMaze)
+
 # Open right img
 imgLocRight = "/home/ubuntu/ros2_ws/src/final_proj/final_proj/img/right.jpg"
 imgFileRight = Image.open(imgLocRight)
@@ -55,26 +67,38 @@ imgFileIncorrect = Image.open(imgLocIncorrect)
 
 # We likely also need to resize to the pupper LCD display size (320x240). 
 # TODO: may need to resize to top 2/3 of screen bc of glitching 
-width_size = (MAX_WIDTH / float(imgFileRight.size[0]))
+#width_size = (MAX_WIDTH / float(imgFileRight.size[0]))
 imgFileRight = resizeimage.resize_width(imgFileRight, MAX_WIDTH)
 
-width_size = (MAX_WIDTH / float(imgFileLeft.size[0]))
+#width_size = (MAX_WIDTH / float(imgFileLeft.size[0]))
 imgFileLeft = resizeimage.resize_width(imgFileLeft, MAX_WIDTH)
 
-width_size = (MAX_WIDTH / float(imgFileFront.size[0]))
+#width_size = (MAX_WIDTH / float(imgFileFront.size[0]))
 imgFileFront = resizeimage.resize_width(imgFileFront, MAX_WIDTH)
 
-width_size = (MAX_WIDTH / float(imgFileIncorrect.size[0]))
+#width_size = (MAX_WIDTH / float(imgFileIncorrect.size[0]))
 imgFileIncorrect = resizeimage.resize_width(imgFileIncorrect, MAX_WIDTH)
 
-width_size = (MAX_WIDTH / float(imgFileCorrect.size[0]))
+#width_size = (MAX_WIDTH / float(imgFileCorrect.size[0]))
 imgFileCorrect = resizeimage.resize_width(imgFileCorrect, MAX_WIDTH)
  
+#width_size = (MAX_WIDTH / float(imgFileMath.size[0]))
+imgFileMath = resizeimage.resize_width(imgFileMath, MAX_WIDTH)
+
+#width_size = (MAX_WIDTH / float(imgFileWorld.size[0]))
+imgFileWorld = resizeimage.resize_width(imgFileWorld, MAX_WIDTH)
+
+#width_size = (MAX_WIDTH / float(imgFileMath.size[0]))
+imgFileMaze = resizeimage.resize_width(imgFileMaze, MAX_WIDTH)
+
 newR = "/home/ubuntu/ros2_ws/src/final_proj/final_proj/img/right1.png"
 newL = "/home/ubuntu/ros2_ws/src/final_proj/final_proj/img/left1.png"
 newF = "/home/ubuntu/ros2_ws/src/final_proj/final_proj/img/straight1.png"
 newI = "/home/ubuntu/ros2_ws/src/final_proj/final_proj/img/incorrect1.png"
 newC = "/home/ubuntu/ros2_ws/src/final_proj/final_proj/img/correct1.png"
+newM = "/home/ubuntu/ros2_ws/src/final_proj/final_proj/img/math1.png"
+newW = "/home/ubuntu/ros2_ws/src/final_proj/final_proj/img/world1.png"
+newMR = "/home/ubuntu/ros2_ws/src/final_proj/final_proj/img/maze1.png"
 
 # now output it (super inefficient, but it is what it is)
 imgFileRight.save(newR, imgFileRight.format)
@@ -82,6 +106,9 @@ imgFileLeft.save(newL, imgFileLeft.format)
 imgFileFront.save(newF, imgFileFront.format)
 imgFileCorrect.save(newC, imgFileCorrect.format)
 imgFileIncorrect.save(newI, imgFileIncorrect.format)
+imgFileMath.save(newM, imgFileMath.format)
+imgFileWorld.save(newW, imgFileWorld.format)
+imgFileMaze.save(newMR, imgFileMaze.format)
 
 def quaternion_from_euler(roll, pitch, yaw):
     """
@@ -117,7 +144,7 @@ class Teleop(Node):
 
         self.declare_parameter("gait/swing_height", 0)
         self.declare_parameter("gait/nominal_height", 0)
-        self.declare_parameter("speed", 0.5)
+        self.declare_parameter("speed", 0.7)
         self.declare_parameter("turn", 1.0)
         
         self.swing_height = self.get_parameter("gait/swing_height").value
@@ -140,8 +167,8 @@ Moving around:
                 '8':(1,0,0,0), # front
                 '4':(0,0,0,1), # left 
                 '6':(0,0,0,-1), # right
-                '2':(-1,0,0,0), # back
-                '5':(0,0,0,0), # stop
+                '2':(-1,0,0,0) # back
+                #'5':(0,0,0,0), # stop
             }
             
         self.image = {
@@ -149,7 +176,10 @@ Moving around:
                 '4': newL, # left 
                 '6': newR, # right
                 '2': newF, # back
-                '5': newF, # stop
+                #'5': newF, # stop
+                'red': newM,
+                'green': newMR,
+                'blue': newW
         }
 
     def joy_callback(self, data):
@@ -194,6 +224,7 @@ Moving around:
         pitch = 0
         yaw = 0
         status = 0
+        mode = 'continue'
 
         try:
             print(self.msg)
@@ -201,9 +232,9 @@ Moving around:
             
             # TODO: add more advanced leveling, ideas: increase speeds when question is right?
             if level == 'level1':
-                interval = 20
+                interval = 40
             elif level == 'level2':
-                interval = 10
+                interval = 25
             end_time = time.time() + interval  
             while(time.time() < end_time):
                 key = self.getKey()
@@ -229,11 +260,11 @@ Moving around:
                     twist.linear.z = 0.0
                     twist.angular.x = 0.0
                     twist.angular.y = 0.0
-                    twist.angular.z = 0.0
                     self.velocity_publisher.publish(twist)
-                    disp.show_image(self.image['5'])
-                    if key == '00':
-                        return 'quit'
+                    disp.show_image(newF)
+                    if key == '5':
+                        mode = 'quit'
+                        return 
 
         except Exception as e:
             print(e)
@@ -249,8 +280,11 @@ Moving around:
             self.velocity_publisher.publish(twist)
 
             termios.tcsetattr(sys.stdin, termios.TCSADRAIN, self.settings)
-            return 'continue'
+            return mode 
 
+    def category(self, color):
+        disp.show_image(self.image[color])
+    
     # TODO: implement         
     def headnod(self, correct):
         body_pose = Pose()

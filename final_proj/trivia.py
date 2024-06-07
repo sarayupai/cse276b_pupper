@@ -75,4 +75,4 @@ class Trivia(Node):
                 print("Answer is invalid")
 
     def get_score(self):
-        return self.correct / self.total 
+        return self.correct, self.total

@@ -48,7 +48,7 @@ class Audio(Node):
     
     def stop_audio(self):
         self.client.stop_audio_request()
-        time.sl
+        
 
 # To test audio functionality     
 def main():
