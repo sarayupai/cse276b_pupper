@@ -42,6 +42,13 @@ class Audio(Node):
     	# delete the file now
     	if os.path.exists('/home/ubuntu/ros2_ws/src/final_proj/final_proj/speech.mp3'):
             os.remove('speech.mp3')
+    
+    def play_audio(self, filename): 
+        self.client.send_audio_request('/home/ubuntu/ros2_ws/src/final_proj/final_proj/audio/' + filename)
+    
+    def stop_audio(self):
+        self.client.stop_audio_request()
+        time.sl
 
 # To test audio functionality     
 def main():

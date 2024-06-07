@@ -200,9 +200,9 @@ Moving around:
             print(self.vels( self.speed, self.turn))
             
             # TODO: add more advanced leveling, ideas: increase speeds when question is right?
-            if level = 'level1':
+            if level == 'level1':
                 interval = 20
-            elif level = 'level2':
+            elif level == 'level2':
                 interval = 10
             end_time = time.time() + interval  
             while(time.time() < end_time):

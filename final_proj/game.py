@@ -30,7 +30,7 @@ class Game(Node):
         self.trivia = Trivia('/home/ubuntu/ros2_ws/src/final_proj/final_proj/database.json')
         self.audio = audio 
         self.teleop = Teleop()
-        self.nod = Nod()
+        # self.nod = Nod()
 
     def start_game(self):
         self.audio.speak('Game start')
@@ -41,35 +41,55 @@ class Game(Node):
         score = self.trivia.get_score()
         self.audio.speak(f'Game end. Your score is {score}')
         self.audio.stop_speak()
-    
-    def trivia_mode(self, color):
+        
+    def trivia_ques(self, question, color, question_key): 
+        while(True):
+            # read out question to user 
+            self.audio.speak(question)
+            # get user answer + stop audio
+            guess = self.trivia.get_user_answer()
+            self.audio.stop_speak()
+            if guess != 'repeat':
+                break
+        correct = self.trivia.check_answer(color, question_key, guess)
+        return correct
+         
+    def react_guess(self, correct):
+        if correct:
+            self.audio.play_audio('correct.mp3')
+            self.teleop.headnod(True)
+            self.audio.stop_audio()
+            self.audio.speak("That's correct! You may proceed through the maze")
+            self.audio.stop_speak()
+        else:
+            self.audio.play_audio('incorrect.mp3')
+            self.teleop.headnod(False)
+            self.audio.stop_audio()
+            self.audio.speak("That's not quite right! Let's try another one.")
+            self.audio.stop_speak()
+
+    def trivia_mode(self, color, level):
         while(True):
             # get new question - ie key and question+answer content 
             question_key, question = self.trivia.get_question(color)
-            
-            while(True):
-                # read out question to user 
-            	self.audio.speak(question)
-            	# get user answer + stop audio
-            	guess = self.trivia.get_user_answer()
-            	self.audio.stop_speak()
-            	if guess != 'repeat':
-            	    break
-            
-            correct = self.trivia.check_answer(color, question_key, guess)
+            correct = self.trivia_ques(question, color,  question_key)
             
             # if answer is correct, exit trivia mode, else repeat with new question 
-            if correct: 
-                self.audio.speak("That's correct! You may proceed through the maze")
-                self.teleop.headnod(True)
-                self.audio.stop_speak()
-                return 
-            else:
-                self.audio.speak("That's not quite right! Let me give you another chance.")
+            if level == 'level1' and not correct:
+                self.audio.play_audio('incorrect.mp3')
                 self.teleop.headnod(False)
+                self.audio.stop_audio()
+                self.audio.speak("You get one more chance!")
                 self.audio.stop_speak()
-                
-    
+                correct = self.trivia_ques(question, color, question_key)
+                self.react_guess(correct)
+                if correct:
+                    return
+            else:
+                self.react_guess(correct)
+                if correct:
+                    return
+
     # game loop: cycle b/t movement mode -> trivia mode (quit if user selects quit key in movement)
     def game_loop(self, level):
         play = True 
@@ -78,12 +98,12 @@ class Game(Node):
             self.audio.speak("Entering move mode")
             print('enter move mode')
             status = self.teleop.poll_keys(level) # should exit move mode after a set interval 
-            if status = 'quit':
+            if status == 'quit':
                 return 
             self.audio.speak("Entering trivia mode")
             print('enter trivia mode')
             rand_color = random.randint(0,2) # Modify this logic?
-            self.trivia_mode(colors[rand_color])
+            self.trivia_mode(colors[rand_color], level)
 
 def main(level):
     rclpy.init()
@@ -131,7 +151,7 @@ if __name__ == '__main__':
         sys.exit(1)
     
     # Extract the arguments from sys.argv
-    levels = ['level1, level2']
+    levels = ['level1', 'level2']
     level = sys.argv[1]
     if level not in levels:
         print("Please select a valid level")

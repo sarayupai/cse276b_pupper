@@ -40,7 +40,7 @@ class Trivia(Node):
     def get_question(self, category):
         self.total += 1 
         key = str(random.randint(1, 3))
-        question = " ".join(self.database[category][key]['question'])
+        question = " .".join(self.database[category][key]['question'])
         return key, question
 
     ###
