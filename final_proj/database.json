@@ -11,26 +11,27 @@
         "3": {
             "question": ["What is the result of adding 87 and 24?", "A) 101", "B) 111", "C) 110", "D) 90"],
             "correct_answer": "2" 
-        }
+        },
         "4": {
             "question": ["What is 169 divided by 13?", "A) 11", "B) 12", "C) 13", "D) 14"],
             "correct_answer": "3"
-        }
-         "5": {
+        },
+        "5": {
             "question": ["What is the difference of 59 and 17?", "A) 46", "B) 36", "C) 32", "D) 42"],
             "correct_answer": "4"
-        }
-         "6": {
+        },
+        "6": {
             "question": ["What is 4 factorial?", "A) 12", "B) 24", "C) 120", "D) #16"],
             "correct_answer": "2"
-        }
-         "7": {
+        },
+        "7": {
             "question": ["What are the next 3 digits of pi after 3 point 1 4?", "A) 159", "B) 529", "C) 192", "D) 152"],
             "correct_answer": "1"
-        }
-         "8": {
+        },
+        "8": {
             "question": ["What is 8 to power of 3", "A) 32", "B) 256", "C) 64", "D) 512"],
             "correct_answer": "4"
+        }
     },
     "green": {
         "1": {
@@ -44,24 +45,24 @@
         "3": {
             "question": ["What is the name of the second book in the Maze Runner Series?", "A) The Death Cure", "B) The Scorch Trials", "C) The Kill Order", "D) The Fever Code"],
             "correct_answer": "2" 
-        }
-         "4": {
+        },
+        "4": {
             "question": ["Who is the author of the Maze Runner series?", "A) John Dash", "B) Dave Runner", "C) James Dashner", "D) John Doh"],
             "correct_answer": "3" 
-        }
-         "5": {
+        },
+        "5": {
             "question": ["What is the name of the disease in the Maze Runner series?", "A) The Flare", "B) The Ruffle", "C) The Purge", "D) Solaritis"],
             "correct_answer": "1" 
-        }
-         "6": {
+        },
+        "6": {
             "question": ["What is the name of the female protagonist in the Maze Runner series?", "A) Trina", "B) Teresa", "C) Sarah", "D) Vanessa"],
             "correct_answer": "2" 
-        }
-         "7": {
+        },
+        "7": {
             "question": ["What is the name of the maze in the Maze Runner series?", "A) The Glacier", "B) The Maze", "C) The Platform", "D) The Glade"],
             "correct_answer": "4" 
-        }
-         "8": {
+        },
+        "8": {
             "question": ["How many Maze Runner series films were made?", "A) 3", "B) 4", "C) 1", "D) 2"],
             "correct_answer": "1" 
         }
@@ -79,24 +80,24 @@
         "3": {
             "question": ["In which year did the Berlin Wall fall?", "A) 1985", "B) 1987", "C) 1989", "D) 1991"],
             "correct_answer": "3" 
-        }
-         "4": {
+        },
+        "4": {
             "question": ["Which is the largest country by land area?", "A) China", "B) Africa", "C) Canada", "D) Russia"],
             "correct_answer": "4" 
-        }
-         "5": {
+        },
+        "5": {
             "question": ["Which country is known as the 'Land of a Thousand Lakes'?", "A) Finland", "B) Sweden", "C) Norway", "D) Canada"],
             "correct_answer": "1" 
-        }
-         "6": {
+        },
+        "6": {
             "question": ["How many official languages does India have?", "A) 121", "B) 14", "C) 206", "D) 22"],
             "correct_answer": "4" 
-        }
-         "7": {
+        },
+        "7": {
             "question": ["Which ancient civilization built the pyramids of Giza?", "A) The Egyptians", "B) The Romans", "C) The Mesopotamians", "D) The Babylonians"],
             "correct_answer": "1" 
-        }
-         "8": {
+        },
+        "8": {
             "question": ["What year was the philosopher Galileo born in?", "A) 1359", "B) 1483", "C) 1574", "D) 1632"],
             "correct_answer": "3" 
         }
