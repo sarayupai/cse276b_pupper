@@ -30,16 +30,22 @@ class Game(Node):
         self.trivia = Trivia('/home/ubuntu/ros2_ws/src/final_proj/final_proj/database.json')
         self.audio = audio 
         self.teleop = Teleop()
-        # self.nod = Nod()
+        self.start_time = 0
 
     def start_game(self):
         self.audio.speak('Game start')
         print('passed initial audio')
         self.audio.stop_speak()
+        self.start_time = time.time()
 
     def end_game(self):
+        end_time = time.time()
+        length = end_time - self.start_time 
+        minutes = int(length // 60)
+        seconds = int(length % 60)
         num_correct, num_questions = self.trivia.get_score()
-        self.audio.speak(f'Game end. You answered {num_correct} out of {num_questions} questions correctly')
+        self.audio.speak(f'Game over. You answered {num_correct} out of {num_questions} questions correctly. 
+        Your total time was {minutes} minutes and {seconds} seconds.')
         self.audio.stop_speak()
         
     def trivia_ques(self, question, color, question_key): 
