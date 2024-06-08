@@ -131,6 +131,9 @@ def quaternion_from_euler(roll, pitch, yaw):
 
     return q
 
+MAX_SPEED = 0.9 
+MIN_SPEED = 0.5 
+
 class Teleop(Node):
     def __init__(self):
         super().__init__('champ_teleop')
@@ -214,7 +217,7 @@ Moving around:
 
         self.pose_publisher.publish(body_pose)
 
-    def poll_keys(self, level):
+    def poll_keys(self, level, first_try):
         self.settings = termios.tcgetattr(sys.stdin)
         x = 0
         y = 0
@@ -230,11 +233,16 @@ Moving around:
             print(self.msg)
             print(self.vels( self.speed, self.turn))
             
-            # TODO: add more advanced leveling, ideas: increase speeds when question is right?
+            # TODO: add more advanced leveling
             if level == 'level1':
                 interval = 40
             elif level == 'level2':
                 interval = 25
+                if first_try and self.speed < MAX_SPEED: 
+                    self.speed += 0.1
+                elif not first_try and self.speed > MIN_SPEED:
+                    self.speed -= 0.1 
+
             end_time = time.time() + interval  
             while(time.time() < end_time):
                 key = self.getKey()

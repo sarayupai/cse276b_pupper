@@ -69,13 +69,16 @@ class Game(Node):
             self.audio.stop_speak()
 
     def trivia_mode(self, color, level):
+        # display category on screen 
         self.teleop.category(color)
+        # tracks whether the user answered the first question correctly 
+        first_try = True
         while(True):
             # get new question - ie key and question+answer content
             question_key, question = self.trivia.get_question(color)
             correct = self.trivia_ques(question, color,  question_key)
             
-            # if answer is correct, exit trivia mode, else repeat with new question 
+            # if in level1 and user is wrong, give them a second chance at question 
             if level == 'level1' and not correct:
                 self.audio.play_audio('incorrect.mp3')
                 self.teleop.headnod(False)
@@ -83,29 +86,32 @@ class Game(Node):
                 self.audio.speak("You get one more chance!")
                 self.audio.stop_speak()
                 correct = self.trivia_ques(question, color, question_key)
-                self.react_guess(correct)
-                if correct:
-                    return
+
+            # if answer is correct, exit trivia mode, else repeat with new question 
+            self.react_guess(correct)
+            if correct:
+                return first_try 
             else:
-                self.react_guess(correct)
-                if correct:
-                    return
+                first_try = False 
 
     # game loop: cycle b/t movement mode -> trivia mode (quit if user selects quit key in movement)
     def game_loop(self, level):
         play = True 
         colors = ['red', 'green', 'blue']
         idx = 0
+        first_try = False 
+        
         while(play):
             print('enter move mode')
             self.audio.speak("Entering move mode")
-            status = self.teleop.poll_keys(level) # should exit move mode after a set interval 
+            status = self.teleop.poll_keys(level, first_try) # should exit move mode after a set interval 
             print(status)
             if status == 'quit':
                 break 
             print('enter trivia mode')
             self.audio.speak("Entering trivia mode")
-            self.trivia_mode(colors[idx], level)
+            # cycle through the categories 
+            first_try = self.trivia_mode(colors[idx], level)
             idx+=1
             if idx == 3: idx=0
 
