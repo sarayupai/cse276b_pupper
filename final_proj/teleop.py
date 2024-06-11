@@ -235,9 +235,9 @@ Moving around:
             
             # TODO: add more advanced leveling
             if level == 'level1':
-                interval = 40
+                interval = 50
             elif level == 'level2':
-                interval = 25
+                interval = 35
                 if first_try and self.speed < MAX_SPEED: 
                     self.speed += 0.1
                 elif not first_try and self.speed > MIN_SPEED:
@@ -300,85 +300,8 @@ Moving around:
             #TODO: up and down head nods causing robot to shut off 
             # reset
             disp.show_image(newC)
-            '''
-            quaternion = quaternion_from_euler(0.0, 0.0, 0.0)
-            body_pose.orientation.x = quaternion[0]
-            body_pose.orientation.y = quaternion[1]
-            body_pose.orientation.z = quaternion[2]
-            body_pose.orientation.w = quaternion[3]
-
-            self.pose_publisher.publish(body_pose)
-            time.sleep(1.0)
-            
-            quaternion = quaternion_from_euler(0.0, 0.1, 0.0)
-            body_pose.orientation.x = quaternion[0]
-            body_pose.orientation.y = quaternion[1]
-            body_pose.orientation.z = quaternion[2]
-            body_pose.orientation.w = quaternion[3]
-
-            self.pose_publisher.publish(body_pose)
-            time.sleep(1.0)
-            
-            quaternion = quaternion_from_euler(0.0, -0.1, 0.0)
-            body_pose.orientation.x = quaternion[0]
-            body_pose.orientation.y = quaternion[1]
-            body_pose.orientation.z = quaternion[2]
-            body_pose.orientation.w = quaternion[3]
-
-            self.pose_publisher.publish(body_pose)
-            time.sleep(1.0)
-            
-            # reset
-            quaternion = quaternion_from_euler(0.0, 0.0, 0.0)
-            body_pose.orientation.x = quaternion[0]
-            body_pose.orientation.y = quaternion[1]
-            body_pose.orientation.z = quaternion[2]
-            body_pose.orientation.w = quaternion[3]
-
-            self.pose_publisher.publish(body_pose)
-            time.sleep(1.0)
-            '''
         else:
             disp.show_image(newI)
-            '''
-            # reset
-            quaternion = quaternion_from_euler(0.0, 0.0, 0.0)
-            body_pose.orientation.x = quaternion[0]
-            body_pose.orientation.y = quaternion[1]
-            body_pose.orientation.z = quaternion[2]
-            body_pose.orientation.w = quaternion[3]
-
-            self.pose_publisher.publish(body_pose)
-            time.sleep(1.0)
-        
-            quaternion = quaternion_from_euler(0.0, 0.0, 0.1)
-            body_pose.orientation.x = quaternion[0]
-            body_pose.orientation.y = quaternion[1]
-            body_pose.orientation.z = quaternion[2]
-            body_pose.orientation.w = quaternion[3]
-
-            self.pose_publisher.publish(body_pose)
-            time.sleep(1.0)
-            
-            quaternion = quaternion_from_euler(0.0, 0.0, -0.1)
-            body_pose.orientation.x = quaternion[0]
-            body_pose.orientation.y = quaternion[1]
-            body_pose.orientation.z = quaternion[2]
-            body_pose.orientation.w = quaternion[3]
-
-            self.pose_publisher.publish(body_pose)
-            time.sleep(1.0)
-            
-            # reset
-            quaternion = quaternion_from_euler(0.0, 0.0, 0.0)
-            body_pose.orientation.x = quaternion[0]
-            body_pose.orientation.y = quaternion[1]
-            body_pose.orientation.z = quaternion[2]
-            body_pose.orientation.w = quaternion[3]
-
-            self.pose_publisher.publish(body_pose)
-            time.sleep(1.0)
-            ''' 
     def getKey(self):
         tty.setraw(sys.stdin.fileno())
         rlist, _, _ = select.select([sys.stdin], [], [], 0.1)
