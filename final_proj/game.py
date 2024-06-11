@@ -33,7 +33,7 @@ class Game(Node):
         # self.nod = Nod()
 
     def start_game(self):
-        self.audio.speak('Game start')
+        self.audio.speak('Welcome to the Maze!')
         print('passed initial audio')
         self.audio.stop_speak()
 
